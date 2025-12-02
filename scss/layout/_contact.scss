@@ -1,0 +1,77 @@
+#contact {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    height: 800px;
+}
+.info {
+    margin-bottom: 20px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    row-gap: 10px;
+    #fmessage {
+        flex-grow: 2;
+        font-family: "Open Sans", sans-serif;
+        height: 200px;
+        // @include md {
+        //     height: 300px;
+        // }
+    }
+    input,
+    textarea,
+    button {
+        height: 50px;
+        padding: 0 15px;
+        font-size: 25px;
+        color: darken($c-sidebar, 20%);
+        &:focus-visible {
+            outline-color: $c-sidebar;
+            outline-style: inset;
+            box-shadow: 0px 2px 2px $c-sidebar;
+        }
+    }
+}
+@include lg {
+    #contact {
+        height: 90vh;
+    }
+    .form {
+        flex-wrap: wrap;
+        flex-direction: row;
+        max-width: 1000px;
+        
+        margin: 10px auto;
+        padding: 10px 0;
+        gap: 10px;
+        align-items: flex-end;
+    }
+    #ffname,
+    #flname,
+    #femail,
+    #fsubject {
+        flex: 45%;
+    }
+    button {
+        width: 90vw;
+    }
+    #fmessage {
+        height: 300px;
+
+    }
+}
+
+
+
+
+
+
+
+
+// <input type="text" placeholder="First Name..." id="ffname"/>
+//                     <input type="text" placeholder="Last Name..." id="flname"/>
+//                     <input type="text" placeholder="Email Adress..." id="femail"/>
+//                     <input type="text" placeholder="Subject..." id="fsubject"/>
+//                     <input type="text" placeholder="Message..." id="fmessage"/>

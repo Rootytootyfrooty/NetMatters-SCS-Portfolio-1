@@ -1,0 +1,14 @@
+main {
+    text-align: center;
+    margin: 0 auto;
+    @include md {
+        padding-left: $sidebar-width;
+    }
+    > * {
+        padding: 50px 30px;
+        border-bottom: 3px solid $c-burger-bg;
+    }
+}
+#about {
+    height: 50vh;
+}

@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+main {
+    h1, h2, h3 {
+        color: $c-burger-bg;
+    }
+    h2 {
+        font-size: 40px;
+        margin-top: 0;
+        margin-bottom: 50px;
+    }
+    h3 {
+        font-size: 30px;
+    }
+    p {
+        color: $c-burger-bg-hov;
+        font-size: 20px;
+    }
+}
+body {
+    margin: 0;
+    background-color: $c-burger;
+}
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+}
+.hidden {
+    display: none;
+}
+ul {
+    padding: 0;
+}

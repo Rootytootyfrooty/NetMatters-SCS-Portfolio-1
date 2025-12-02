@@ -1,0 +1,128 @@
+.burger {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: 63px;
+    height: 56px;
+    background-color: $c-burger-bg;
+    border-radius: 3px;
+        &:hover {
+           background-color: $c-burger-bg-hov; 
+        }
+        .mid {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 35px;
+        height: 4px;
+        background-color: $c-burger;
+        transform: translate(-50%, -50%);
+        transition: 0.4s;
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+                width: 35px;
+                height: 4px;
+                top: -10px;
+                transition: 0.4s;
+                background-color: $c-burger;
+}
+            &::before {
+                top: -10px;
+            }
+            &::after {
+                top: 10px;
+            }
+    }
+    @include md {
+        display: none;
+    }
+}
+.sb-item-k {
+    height: 190px;
+    width: 190px;
+    display: flex;
+    align-items: center;
+    font-size: 100px;
+    border: 2px solid;
+    border-radius: 50%;
+    border-color: $c-burger-bg;
+    margin-bottom: 25px;
+    overflow: hidden;
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        color: inherit;
+        &:hover {
+            background-color: $c-burger;
+        }
+    }
+}
+.sb-item {
+    font-size: 15px;
+    width: auto;
+    height: 60px;
+    text-decoration: none;
+    padding: 5px 20px;
+    text-align: center;
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        color: inherit;
+    }
+    &:hover {
+        background-color: $c-burger;
+        }
+}
+#sidebar {
+    display: none;
+    @include md {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+        width: $sidebar-width;
+        background-color: $c-sidebar;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+        text-align: center;
+        align-items: center;
+        justify-content: space-evenly;
+        a {
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+            color: $c-burger-bg;
+           text-align: center; 
+        }
+    }
+    .sidebar {
+        padding: 0;
+        height: 90vh;
+    }
+}
+#social-media {
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 150px;
+    li {
+        list-style: none;
+        a svg {
+            display: inline-block;
+            fill: black;
+            height: 32px;
+            width: 32px;
+        }
+    }
+}

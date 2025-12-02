@@ -1,0 +1,41 @@
+.porpro {
+    display: flex;
+    flex-wrap: wrap;
+    h3 {
+        margin-top: 10px;
+    }
+    .project {
+        flex: 100%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 50px;
+        padding: 5px;
+        gap: 5px;
+        @include md {
+            img {
+                max-width: 100%;
+            }
+        }
+        @include lg {
+            flex: 50%;
+        }
+        @include xl {
+            flex: 33%;
+        }
+    }
+    a {
+        color: $c-burger-bg;
+        &:hover {
+            text-decoration: underline;
+            color: $c-burger-bg-hov;
+        }
+    }
+    img {
+        width: 80vw;
+        margin: 5px 15px;
+        border: 2px solid $c-head-txt;
+        border-radius: 5px;
+    }
+}
