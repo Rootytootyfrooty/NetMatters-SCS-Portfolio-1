@@ -17,3 +17,19 @@ $c-head-txt: #DDE6ED;
 // $c-burger-bg: #0D0D0D;
 // $c-burger-bg-hov: #16260F;
 // $c-head-txt: #8C6F56;
+
+
+
+// Soc media colours
+
+$c-etsy: #f1641e;
+$c-inst: #d93175;
+$c-tumblr: #001935;
+$c-kat: #622fa5;
+
+$soc-med-colors: (
+    etsy: $c-etsy,
+    inst: $c-inst,
+    tumb: $c-tumblr,
+    kat: $c-kat
+);
