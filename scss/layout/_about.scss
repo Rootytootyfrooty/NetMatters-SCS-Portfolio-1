@@ -4,11 +4,18 @@ main {
     @include md {
         padding-left: $sidebar-width;
     }
-    > * {
-        padding: 50px 30px;
+    .containerid {
+        margin: 0 auto;
         border-bottom: 3px solid $c-burger-bg;
+        padding: 50px 30px;
     }
 }
 #about {
     height: 50vh;
+    @include lg {
+        p {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+    }
 }
