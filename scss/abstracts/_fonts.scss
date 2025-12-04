@@ -22,17 +22,11 @@ main {
 body {
     margin: 0;
     background-color: $c-burger;
-}
-a {
-    text-decoration: none;
-}
-
-body {
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
 }
-.hidden {
-    display: none;
+a {
+    text-decoration: none;
 }
 ul {
     padding: 0;

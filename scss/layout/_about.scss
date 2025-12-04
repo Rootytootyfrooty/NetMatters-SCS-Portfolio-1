@@ -11,11 +11,20 @@ main {
     }
 }
 #about {
-    height: 50vh;
+    height: auto;
+    p {
+        margin-bottom: 15px;
+    }
+    @include md {
+        p {
+            margin-bottom: 25px;
+        }
+    }
     @include lg {
         p {
             max-width: 1000px;
             margin: 0 auto;
+            margin-bottom: 50px;
         }
     }
 }

@@ -12,6 +12,7 @@
         flex-direction: column;
         align-items: center;
         margin-bottom: 50px;
+        // margin: 5px 5px 50px 5px;
         padding: 5px;
         gap: 5px;
         top: 0;
@@ -20,7 +21,7 @@
         &::after {
         content: "";
         position: absolute;
-        left: 0;
+        left: 5px;
         bottom: 0;
         width: 0%;
         height: 2px;
@@ -28,7 +29,7 @@
         transition: width .3s ease;
     }
     &:hover::after {
-        width: 100%;
+        width: calc(100% - 10px);
     }
         &:hover {
             top: -10px;
@@ -53,14 +54,23 @@
     a {
         color: $c-burger-bg;
         &:hover {
-            text-decoration: underline;
-            color: $c-burger-bg-hov;
+            h3, p {
+                color: $c-burger-bg-hov;
+            }
         }
     }
     img {
-        width: 80vw;
+        width: max-content;
         margin: 5px 15px;
-        border: 2px solid $c-head-txt;
+        border: 2px solid lightgrey;
         border-radius: 5px;
+    }
+}
+.proj {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    img {
+        width: 90vw;
     }
 }

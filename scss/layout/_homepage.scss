@@ -12,6 +12,7 @@
         width: 50vw;
         margin: 0 auto;
         text-align: center;
+        align-items: center;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -35,12 +36,12 @@
         margin: 0 auto;
         transform: translate(-50%, -50%);
         text-wrap: nowrap;
+        display: flex;
+        align-items: center;
         p {
-            display: flex;
-            align-items: center;
         }
         @include md {
-            transform: none;
+            padding-left: $sidebar-width;
             bottom: 0;
         }
     }

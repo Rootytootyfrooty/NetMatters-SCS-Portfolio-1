@@ -1,4 +1,5 @@
 .burger {
+    @include style-reset;
     display: inline-block;
     position: relative;
     cursor: pointer;
@@ -25,6 +26,8 @@
                 width: 35px;
                 height: 4px;
                 top: -10px;
+                left: 50%;
+                transform: translateX(-50%);
                 transition: 0.4s;
                 background-color: $c-burger;
 }
@@ -51,9 +54,22 @@
     margin-bottom: 25px;
     overflow: hidden;
     &:hover #initial {
-            transform: rotate(360deg);
-            transition: transform 1s ease;
-            overflow: hidden;
+        // Absolutely too much, but it was fun
+        // background-image: radial-gradient(
+        // circle at top left,
+        // #ec407a,
+        // #ec407a 20%,
+        // #7e57c2 20%,
+        // #7e57c2 40%,
+        // #42a5f5 40%,
+        // #42a5f5 60%,
+        // #26a69a 60%,
+        // #26a69a 80%,
+        // #9ccc65 80%
+        // );
+        transform: rotate(360deg);
+        transition: transform 1s ease;
+        overflow: hidden;
     }
 }
 
@@ -65,9 +81,16 @@
         height: 100%;
         color: inherit;
         border-radius: 2px;
+        outline: transparent;
         &:hover {
             background-color: $c-burger;
         }
+        &:focus-visible {
+            background-color: $c-burger;
+            outline: transparent;
+            border: none;
+        }
+        
     }
 
 .sb-item {
@@ -78,6 +101,11 @@
     padding: 5px 0;
     text-align: center;
     list-style: none;
+    &:focus-visible {
+            background-color: $c-burger;
+            outline: transparent;
+            border: none;
+        }
 }
 #sidebar {
     display: none;
@@ -91,10 +119,11 @@
         background-color: $c-sidebar;
         position: fixed;
         height: 100%;
-        overflow: auto;
+        overflow: hidden;
         text-align: center;
         align-items: center;
         justify-content: space-evenly;
+        border-right: 1px solid $c-burger-bg;
         a {
             display: flex;
             align-items: center;

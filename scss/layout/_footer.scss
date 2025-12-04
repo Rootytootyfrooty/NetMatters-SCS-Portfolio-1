@@ -5,6 +5,10 @@ footer {
     }
     a {
         padding-bottom: 20px;
+        color: inherit;
+        &:hover {
+            text-decoration: underline;
+        }
     }
     text-align: center;
     @include md {
