@@ -1,8 +1,11 @@
 #contact {
     display: flex;
     flex-direction: column;
-    align-content: space-between;
+    align-content: center;
     height: auto;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 .info {
     margin-bottom: 20px;
@@ -25,7 +28,7 @@
         font-size: 25px;
         color: darken($c-sidebar, 20%);
         &:focus-visible {
-            outline-color: $c-sidebar;
+            outline-color: rgba($c-sidebar, 0.5);
             outline-style: inset;
             box-shadow: 0px 2px 2px $c-sidebar;
         }
@@ -33,13 +36,13 @@
 }
 @include lg {
     #contact {
-        height: 90vh;
+        min-height: 90vh;
     }
     .form {
         flex-wrap: wrap;
         flex-direction: row;
-        max-width: 1000px;
-        margin: 10px auto;
+        width: auto;
+        margin: 0 auto;
         padding: 10px 0;
         gap: 10px;
         align-items: flex-end;
@@ -69,4 +72,20 @@
     clip-path: inset(100%);
     border: 0;
     white-space: nowrap; 
+}
+
+.formcont {
+    background-color: rgba($c-sidebar, 0.25);
+    padding: 32px;
+    margin-bottom: 48px;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba($c-burger-bg-hov, 0.15);
+    max-width: 700px;
+    @include lg {
+        margin: 0 auto;
+        margin-bottom: 48px;
+    }
+    @include xl {
+        max-width: 900px;
+    }
 }

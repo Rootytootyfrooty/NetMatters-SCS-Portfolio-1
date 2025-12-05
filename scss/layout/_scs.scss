@@ -1,20 +1,47 @@
 #scs {
-    
-    p {
-        text-align: justify;
-        text-justify: inter-word;
-        border: 2px solid $c-burger-bg-hov;
-        border-radius: 5px;
-        padding: 10px;
-    }
-}
-.scs {
-    @include lg {
-        max-width: 1000px;
-        margin: 0 auto;
+    h2 {
+        text-align: center;
+        color: $c-burger-bg;
+        letter-spacing: 0.5px;
     }
 }
 
-.scs1 {
-    margin-bottom: 50px;
+.scs {
+    background-color: rgba($c-sidebar, 0.25);
+    padding: 32px;
+    margin: 0 auto 48px;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba($c-burger-bg-hov, 0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    max-width: 700px;
+    h3 {
+        color: $c-burger-bg;
+        margin-top: 0;
+        margin-bottom: 36px;
+    }
+    p {
+        color: $c-burger-bg-hov;
+        line-height: 1.6;
+        text-align: justify;
+        font-size: 16px;
+    }
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 8px rgba($c-burger-bg, 0.35);
+    }
+}
+
+@include lg {
+    #scs {
+        padding: 64px 32px;
+    }
+    .scs {
+        max-width: 700px;
+        padding: 32px 48px;
+    }
+}
+@include xl {
+    .scs {
+        max-width: 900px;
+    }
 }

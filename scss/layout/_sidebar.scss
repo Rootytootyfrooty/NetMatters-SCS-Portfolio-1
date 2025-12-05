@@ -68,7 +68,7 @@
         // #9ccc65 80%
         // );
         transform: rotate(360deg);
-        transition: transform 1s ease;
+        transition: transform 1s ease, background 1s ease;
         overflow: hidden;
     }
 }
@@ -82,8 +82,10 @@
         color: inherit;
         border-radius: 2px;
         outline: transparent;
+        transition: background .5s, transform .5s;
         &:hover {
             background-color: $c-burger;
+            transform: translateY(-2px);
         }
         &:focus-visible {
             background-color: $c-burger;
@@ -146,11 +148,15 @@
         display: inline-block;
         height: 32px;
         width: 32px;
+        transition: background .5s, transform .1s ease;
+        transform: scale(1);
     }
   .soc-med--#{$name}:hover {
         background-color: $color;
         border-color: transparent;
         cursor: pointer;
+        transition: background .2s, transform .1s ease;
+        transform: scale(1.1);
     }
   }
 

@@ -1,18 +1,29 @@
 * {
     box-sizing: border-box;
 }
-
+section {
+    overflow-anchor: none;
+}
 main {
+    
+    overflow-x: hidden;
     h1, h2, h3 {
         color: $c-burger-bg;
     }
     h2 {
-        font-size: 40px;
         margin-top: 0;
         margin-bottom: 50px;
+        font-size: 40px;
+        @include sm {
+            font-size: 64px;
+            margin-bottom: 64px;
+        }
     }
     h3 {
         font-size: 30px;
+        @include lg {
+            font-size: 40px;
+        }
     }
     p {
         color: $c-burger-bg-hov;
