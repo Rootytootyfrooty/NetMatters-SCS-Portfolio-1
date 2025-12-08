@@ -5,9 +5,10 @@ footer {
     }
     a {
         padding-bottom: 20px;
-        color: inherit;
+        color: $c-burger-bg-hov;
         &:hover {
             text-decoration: underline;
+            color: $c-burger-bg;
         }
     }
     text-align: center;

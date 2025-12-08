@@ -1,3 +1,4 @@
+
 .porpro {
     display: flex;
     flex-wrap: wrap;
@@ -31,7 +32,7 @@
     &:hover::after {
         width: calc(100% - 10px);
     }
-    &:hover {
+    &:hover, &:target, &:active, &:focus {
         top: -10px;
         transition: top .6s ease, box-shadow 0.6s ease;
         img {

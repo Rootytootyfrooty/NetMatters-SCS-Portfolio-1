@@ -1,4 +1,7 @@
-
+// header {
+    // position: relative;
+    // transition: transform 1s ease;
+// }
 .backsplash {
     background-image: url("../img/backsplash3.png");
     height: 100vh;
@@ -6,6 +9,8 @@
     background-repeat: no-repeat;
     color: $c-head-txt;
     font-size: 20px;
+    // right: -100vw;
+    // transform: translate(-100vw);
     #introtext {
         display: flex;
         flex-direction: column;
