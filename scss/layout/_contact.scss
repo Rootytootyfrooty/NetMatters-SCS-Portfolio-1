@@ -6,6 +6,11 @@
     margin-top: 0;
     margin-left: auto;
     margin-right: auto;
+    @include dm {
+        h2, address {
+            color: $c-burger;
+        }
+    }
 }
 .info {
     margin-bottom: 20px;
@@ -31,7 +36,13 @@
             outline-color: rgba($c-sidebar, 0.5);
             outline-style: inset;
             box-shadow: 0px 2px 2px $c-sidebar;
+            @include dm {
+                    outline-color: $c-burger;
+            }
         }
+            @include dm {
+                color: $c-burger;
+            }
     }
 }
 @include lg {

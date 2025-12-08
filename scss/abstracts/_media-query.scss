@@ -24,3 +24,39 @@ $screen-xl: 1200px;
         @content; 
     }
 }
+
+@mixin dm { 
+    @media (prefers-color-scheme: dark) {
+        background-color: $c-burger-bg-hov;
+        p, h1, h2, h3, img, a {
+        color: $c-burger;
+            &:hover {
+                color: $c-sidebar;
+            }
+        }
+        @content;
+    }
+}
+
+// //small landscape 
+// @mixin ls {
+//     @media only screen and (orientation: landscape) and (max-width: 900px) {
+//         @content;
+//     }
+// }
+
+// @mixin bl {
+//     @media only screen and (orientation: landscape) and (max-width: 1200px) {
+        
+//         @content;
+//     }
+// }
+@mixin ls {
+    @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 1000px) 
+    and (-webkit-min-device-pixel-ratio: 3)
+    and (orientation: landscape) { 
+        @content;
+    }
+}

@@ -4,6 +4,9 @@ main {
     @include md {
         padding-left: $sidebar-width;
     }
+    @include ls {
+        padding-left: 0;
+    }
     .containerid {
         margin: 0 auto;
         border-bottom: 4px solid lighten($c-burger-bg, 10%);
@@ -26,5 +29,10 @@ main {
             margin: 0 auto;
             margin-bottom: 50px;
         }
+    }
+    @include dm {
+        p, h2 {
+        color: $c-burger;
+        }    
     }
 }

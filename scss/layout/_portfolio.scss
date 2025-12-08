@@ -5,6 +5,9 @@
     h3 {
         margin-top: 10px;
         margin-bottom: 10px;
+        @include lg {
+            height: 110px;
+        }
     }
     .project {
         flex: 100%;
@@ -60,19 +63,32 @@
                 color: $c-burger-bg-hov;
             }
         }
-    }
+}
     img {
         width: max-content;
         margin: 5px 15px;
-        border: 2px solid lightgrey;
+        border: 2px solid transparent;
         border-radius: 5px;
+        @include dm {
+            opacity: 0.75;
+            transition: opacity .5s ease-in-out;
+        }
+        &:hover {
+            opacity: 1;
+        }
     }
 }
 .proj {
     display: flex;
     align-items: center;
     flex-direction: column;
+    object-fit: scale-down;
     img {
         width: 90vw;
+        object-fit: scale-down;
+    }
+}
+#portfolio {
+    @include dm {
     }
 }

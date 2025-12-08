@@ -1,7 +1,3 @@
-// header {
-    // position: relative;
-    // transition: transform 1s ease;
-// }
 .backsplash {
     background-image: url("../img/backsplash3.png");
     height: 100vh;
@@ -9,8 +5,10 @@
     background-repeat: no-repeat;
     color: $c-head-txt;
     font-size: 20px;
-    // right: -100vw;
-    // transform: translate(-100vw);
+    @include ls {
+            font-size: 20px;
+        }
+
     #introtext {
         display: flex;
         flex-direction: column;
@@ -24,6 +22,19 @@
         transform: translate(-50%, -50%);
         @include md {
             padding-left: $sidebar-width;
+            font-size: 25px;
+            @include ls {
+                padding-left: 0;
+                font-size: 20px;
+                text-wrap: wrap;
+            }
+        }
+        @include ls {
+            padding-left: 0;
+            h1 {
+                font-size: 20px;
+                text-wrap: wrap;
+            }
         }
         h1, p {
         text-shadow:
@@ -31,6 +42,13 @@
         1px -1px 0 $c-burger-bg,
         -1px 1px 0 $c-burger-bg,
         1px 1px 0 $c-burger-bg;
+        }
+        h1 {
+            @include ls {
+                padding-left: 0;
+                font-size: 20px;
+                text-wrap: wrap;
+            }
         }
     }
     .scroll {
@@ -43,11 +61,18 @@
         text-wrap: nowrap;
         display: flex;
         align-items: center;
+        
+        @include ls {
+            display: none;
+        }
         p {
         }
         @include md {
             padding-left: $sidebar-width;
             bottom: 0;
+            @include ls {
+                display: none;
+            }
         }
     }
     @include md {

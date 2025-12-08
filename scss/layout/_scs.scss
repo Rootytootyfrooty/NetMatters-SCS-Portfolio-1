@@ -4,6 +4,11 @@
         color: $c-burger-bg;
         letter-spacing: 0.5px;
     }
+    @include dm {
+        h2 {
+            color: $c-burger;
+        }
+    }
 }
 
 .scs {
@@ -28,7 +33,17 @@
     &:hover {
         transform: scale(1.05) translateY(-4px);
         box-shadow: 0 8px 8px rgba($c-burger-bg, 0.35);
+        a {
+            font-size: 20px;
+        }
     }
+    a {
+        color: $c-burger-bg-hov;
+        &:hover {
+            text-decoration: underline;
+            font-size: 20px;
+            }
+        }
 }
 
 @include lg {

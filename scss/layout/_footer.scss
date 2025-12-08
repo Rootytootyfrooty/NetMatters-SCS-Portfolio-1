@@ -1,11 +1,17 @@
 footer {
-    margin: 20px auto;
+    padding: 20px 0;
+    margin: 0 auto;
     > * {
         display: block;
     }
     a {
         padding-bottom: 20px;
         color: $c-burger-bg-hov;
+        @include dm {
+            a {
+                color: $c-burger;
+            }
+        }
         &:hover {
             text-decoration: underline;
             color: $c-burger-bg;
@@ -14,5 +20,10 @@ footer {
     text-align: center;
     @include md {
         padding-left: $sidebar-width;
+    }
+    @include dm {
+        small, a {
+            color: $c-burger;
+        }
     }
 }
