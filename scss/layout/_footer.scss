@@ -26,4 +26,8 @@ footer {
             color: $c-burger;
         }
     }
+    @include ls {
+        margin: 0 auto;
+        padding-left: 0;
+    }
 }
