@@ -25,7 +25,7 @@
     row-gap: 10px;
     #fmessage {
         flex-grow: 2;
-        font-family: "Open Sans", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         height: 200px;
     }
     input,
@@ -33,8 +33,10 @@
     button {
         height: 50px;
         padding: 0 15px;
-        font-size: 25px;
+        font-size: 20px;
         color: darken($c-sidebar, 20%);
+        box-shadow: none;
+        font-family: "Plus Jakarta Sans", sans-serif;
         &:focus-visible {
             outline-color: rgba($c-sidebar, 0.5);
             outline-style: inset;
@@ -76,6 +78,7 @@
 
     }
 }
+//form labels for screen readers but hidden from view
 .hidden {
     position: absolute;
     width: 1px;
@@ -88,13 +91,13 @@
     border: 0;
     white-space: nowrap; 
 }
-
+//form container
 .formcont {
     background-color: rgba($c-sidebar, 0.25);
     padding: 32px;
     margin-bottom: 48px;
     border-radius: 4px;
-    box-shadow: 0 4px 16px rgba($c-burger-bg-hov, 0.15);
+    // box-shadow: 0 4px 16px rgba($c-burger-bg-hov, 0.15);
     max-width: 700px;
     @include lg {
         margin: 0 auto;

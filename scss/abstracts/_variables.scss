@@ -1,5 +1,7 @@
 $sidebar-width: 225px;
 
+
+//mixin for style reset for default browser styling
 @mixin style-reset {
     appearance: none;
     border: none;

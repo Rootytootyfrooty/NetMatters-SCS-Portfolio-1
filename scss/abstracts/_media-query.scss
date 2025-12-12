@@ -25,6 +25,8 @@ $screen-xl: 1200px;
     }
 }
 
+
+//dark mode
 @mixin dm { 
     @media (prefers-color-scheme: dark) {
         background-color: $c-burger-bg-hov;
@@ -38,24 +40,11 @@ $screen-xl: 1200px;
     }
 }
 
-// //small landscape 
-// @mixin ls {
-//     @media only screen and (orientation: landscape) and (max-width: 900px) {
-//         @content;
-//     }
-// }
-
-// @mixin bl {
-//     @media only screen and (orientation: landscape) and (max-width: 1200px) {
-        
-//         @content;
-//     }
-// }
+//should cover most phones landscape
 @mixin ls {
     @media only screen 
     and (min-device-width: 375px) 
     and (max-device-width: 1000px) 
-    
     and (orientation: landscape) { 
         @content;
     }

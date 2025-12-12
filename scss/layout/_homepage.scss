@@ -8,7 +8,6 @@
     @include ls {
             font-size: 20px;
         }
-
     #introtext {
         display: flex;
         flex-direction: column;
@@ -36,6 +35,7 @@
                 text-wrap: wrap;
             }
         }
+        //works as outline around font so it can be read on any colour background
         h1, p {
         text-shadow:
         -1px -1px 0 $c-burger-bg,  
@@ -51,6 +51,8 @@
             }
         }
     }
+
+    //scroll down text
     .scroll {
         position: absolute;
         bottom: -50px;

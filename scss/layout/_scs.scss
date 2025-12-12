@@ -1,4 +1,5 @@
 #scs {
+    min-height: auto;
     h2 {
         text-align: center;
         color: $c-burger-bg;
@@ -10,27 +11,115 @@
         }
     }
 }
+//experiment start
+//wip - stacking cards
+// @include md {
+//     .articles {
+//         position: relative;
+//         height: auto;
+//         width: 60vw;
+//         top: 60px;
+//         left: 0%;
+//         display: flex;
+//         flex-direction: column;
+//         margin: 0 auto;
+//         // margin-left: -$sidebar-width;
+//         @include lg {
+//             flex-direction: row;
+//         }
+//     }
+//     .scs {
+//         display: flex;
+//         flex-direction: column;
+//         height: fit-content;
+//         min-height: 400px;
+//         max-width: 80vw;
+//         background-color: $c-sidebar;
+//         box-shadow: 0 4px 16px rgba($c-burger-bg-hov, 0.15);
+//         transition: 0.4s ease-out;
+//         position: relative;
+//         left: 0px;
+//         padding: 32px;
+//         border-radius: 12px;
+//         margin-bottom: 32px;
+//         @include lg {
+//             max-width: 30vw;
+//         }
+//     }
+//     @include lg {
+//     .scs:not(:first-child) {
+//         margin-top: -50px;
+//             margin-top: 0;
+//             margin-left: -50px;
+//         }
+//     }
+//     .scs:hover, .scs:active {
+//         transform: translateY(-20px);
+//         transition: 0.4s ease-out;
+//     }
+//     .scs:hover ~ .scs {
+//         position: relative;
+//         left: 150px;
+//         transition: 0.4s ease-out;
+//     }
+//     .scs {
+//         h3 {
+//             color: $c-burger-bg;
+//             margin-top: 0;
+//             margin-bottom: 36px; 
+//         }
+//         p {
+//             color: $c-burger-bg-hov;
+//             line-height: 1.6;
+//             text-align: justify;
+//             font-size: 16px;
+//             margin-top: auto;
+//         }
+//     }
+//     a:hover {
+//             text-decoration: underline;
+//         }
+// }
 
+
+//experiment end
+
+
+//original vvv
 .scs {
     background-color: rgba($c-sidebar, 0.25);
-    padding: 32px;
+    padding: 25px;
     margin: 0 auto 48px;
     border-radius: 12px;
-    box-shadow: 0 4px 16px rgba($c-burger-bg-hov, 0.15);
+    // box-shadow: 0 4px 16px rgba($c-burger-bg-hov, 0.15);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     max-width: 700px;
     h3 {
         color: $c-burger-bg;
         margin-top: 0;
         margin-bottom: 36px;
+        @include sm {
+            margin-bottom: 40px;  
+        }
+        @include md {
+            margin-bottom: 45px;  
+        }
+        @include lg {
+            margin-bottom: 48px;  
+        }
     }
     p {
         color: $c-burger-bg-hov;
         line-height: 1.6;
+        // text-align: initial;
         text-align: justify;
         font-size: 16px;
+        @include lg {
+            font-size: 18px;
+            padding: 0 3px;
+        }
     }
-    &:hover {
+    &:hover, &:active {
         transform: scale(1.05) translateY(-4px);
         box-shadow: 0 8px 8px rgba($c-burger-bg, 0.35);
         a {
@@ -52,7 +141,7 @@
     }
     .scs {
         max-width: 700px;
-        padding: 32px 48px;
+        padding: 30px;
     }
 }
 @include xl {

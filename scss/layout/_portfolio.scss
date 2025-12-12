@@ -2,6 +2,8 @@
 .porpro {
     display: flex;
     flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
     h3 {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -16,9 +18,7 @@
         flex-direction: column;
         align-items: center;
         margin-bottom: 50px;
-        // margin: 5px 5px 50px 5px;
         padding: 5px;
-        gap: 5px;
         top: 0;
         transition: top .6s ease;
         position: relative;
@@ -31,31 +31,31 @@
         height: 2px;
         background: currentColor;
         transition: width .3s ease;
-    }
-    &:hover::after {
-        width: calc(100% - 10px);
-    }
-    &:hover, &:target, &:active, &:focus {
-        top: -10px;
-        transition: top .6s ease, box-shadow 0.6s ease;
+        }
+        &:hover::after {
+            width: calc(100% - 10px);
+        }
+        &:hover, &:target, &:active, &:focus {
+            top: -10px;
+            transition: top .6s ease, box-shadow 0.6s ease;
         img {
             box-shadow: 0 5px 30px rgba($c-burger-bg, 0.25);
             filter: brightness(80%);
             transition: filter 1s ease;
         }
     }
-    @include md {
-        img {
-            max-width: 100%;
+        @include md {
+            img {
+                max-width: 100%;
+            }
         }
+        @include lg {
+            flex: 50%;
+        }
+        // @include xl {
+        //     flex: 33%;
+        // }
     }
-    @include lg {
-        flex: 50%;
-    }
-    @include xl {
-        flex: 33%;
-    }
-}
     a {
         color: $c-burger-bg;
         &:hover {
@@ -63,11 +63,11 @@
                 color: $c-burger-bg-hov;
             }
         }
-}
+    }
     img {
         width: max-content;
         margin: 5px 15px;
-        border: 2px solid transparent;
+        // border: 2px solid transparent;
         border-radius: 5px;
         @include dm {
             opacity: 0.75;
@@ -84,7 +84,7 @@
     flex-direction: column;
     object-fit: scale-down;
     img {
-        width: 90vw;
+        max-width: 90vw;
         object-fit: scale-down;
     }
 }

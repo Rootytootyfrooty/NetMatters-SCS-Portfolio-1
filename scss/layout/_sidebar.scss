@@ -45,6 +45,8 @@
         display: inline-block;
     }
 }
+
+//the big initial K
 .sb-item-k {
     height: 190px;
     width: 190px;
@@ -75,7 +77,7 @@
         overflow: hidden;
     }
 }
-
+//sidebar buttons, not including social media or K
 .btn {
         display: flex;
         justify-content: center;
@@ -126,12 +128,22 @@
         justify-content: space-evenly;
         // border-right: 1px solid $c-burger-bg;
         z-index: 2;
+        @include dm {
+            background-color: $c-sidebar-dk;
+        }
         a {
             display: flex;
             align-items: center;
             margin: 0 auto;
             color: $c-burger-bg;
-           text-align: center; 
+            text-align: center; 
+            @include dm {
+                color: $c-burger;
+                background-color: $c-sidebar-dk;
+            &:hover {
+                background-color: $c-burger-bg-hov;
+            }
+            }
         }
     }
     .sidebar {
@@ -141,12 +153,9 @@
     @include ls {
             display: none;
         }
-    //     @include bl {
-    //         display: none;
-    //     }
 }
 
-//soc media part
+//soc media buttons
 
 @each $name, $color in $soc-med-colors {
     .soc-med--#{$name} svg {
@@ -158,6 +167,7 @@
         width: 32px;
         transition: background .5s, transform .1s ease;
         transform: scale(1);
+        
     }
   .soc-med--#{$name}:hover {
         background-color: $color;
@@ -165,6 +175,10 @@
         cursor: pointer;
         transition: background .2s, transform .1s ease;
         transform: scale(1.1);
+        border-radius: 2px;
+        @include dm {
+            background-color: $color;
+        }
     }
   }
 
