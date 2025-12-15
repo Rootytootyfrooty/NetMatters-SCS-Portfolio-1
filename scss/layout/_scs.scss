@@ -12,74 +12,89 @@
     }
 }
 //experiment start
-//wip - stacking cards
-// @include md {
-//     .articles {
-//         position: relative;
-//         height: auto;
-//         width: 60vw;
-//         top: 60px;
-//         left: 0%;
-//         display: flex;
-//         flex-direction: column;
-//         margin: 0 auto;
-//         // margin-left: -$sidebar-width;
-//         @include lg {
-//             flex-direction: row;
-//         }
-//     }
-//     .scs {
-//         display: flex;
-//         flex-direction: column;
-//         height: fit-content;
-//         min-height: 400px;
-//         max-width: 80vw;
-//         background-color: $c-sidebar;
-//         box-shadow: 0 4px 16px rgba($c-burger-bg-hov, 0.15);
-//         transition: 0.4s ease-out;
-//         position: relative;
-//         left: 0px;
-//         padding: 32px;
-//         border-radius: 12px;
-//         margin-bottom: 32px;
-//         @include lg {
-//             max-width: 30vw;
-//         }
-//     }
-//     @include lg {
-//     .scs:not(:first-child) {
-//         margin-top: -50px;
-//             margin-top: 0;
-//             margin-left: -50px;
-//         }
-//     }
-//     .scs:hover, .scs:active {
-//         transform: translateY(-20px);
-//         transition: 0.4s ease-out;
-//     }
-//     .scs:hover ~ .scs {
-//         position: relative;
-//         left: 150px;
-//         transition: 0.4s ease-out;
-//     }
-//     .scs {
-//         h3 {
-//             color: $c-burger-bg;
-//             margin-top: 0;
-//             margin-bottom: 36px; 
-//         }
-//         p {
-//             color: $c-burger-bg-hov;
-//             line-height: 1.6;
-//             text-align: justify;
-//             font-size: 16px;
-//             margin-top: auto;
-//         }
-//     }
-//     a:hover {
-//             text-decoration: underline;
-//         }
-// }
+// wip - stacking cards
+
+    // .articles {
+    //     position: relative;
+    //     height: auto;
+    //     max-width: 900px;
+    //     // width: 90vw;
+    //     top: 60px;
+    //     left: 0%;
+    //     display: flex;
+    //     flex-direction: column;
+    //     margin: 0 auto;
+    //     // margin-left: -$sidebar-width;
+    //     @include lg {
+    //         flex-direction: row;
+    //     }
+    //     a:hover {
+    //         text-decoration: underline;
+    //     }
+    // }
+    // .scs {
+    //     display: flex;
+    //     flex-direction: column;
+    //     max-height: 600px;
+    //     min-height: 400px;
+    //     max-width: 700px;
+    //     background-color: rgba($c-sidebar, 0.25);
+    //     box-shadow: 0 4px 16px rgba($c-burger-bg-hov, 0.15);
+    //     transition: 0.4s ease-out;
+    //     position: relative;
+    //     left: 0px;
+    //     padding: 32px;
+    //     border-radius: 12px;
+    //     margin-bottom: 32px;
+    //     @include lg {
+    //         max-width: 30vw;
+    //     }
+    // }
+    // @include lg {
+    // .scs:not(:first-child) {
+    //     margin-top: -50px;
+    //         margin-top: 0;
+    //         margin-left: -50px;
+    //     }
+    //     .scs:hover, .scs:active {
+    //     transform: translateY(-20px);
+    //     transition: 0.4s ease-out;
+    //     }
+    //     .scs:hover ~ .scs {
+    //         position: relative;
+    //         left: 150px;
+    //         transition: 0.4s ease-out;
+    //     }
+    // }
+    // .scs:hover, .scs:active {
+    //     transform: translateY(-20px);
+    //     transition: 0.4s ease-out;
+    // }
+    // .scs:hover ~ .scs {
+    //     position: relative;
+    //     top: 20px;
+    //     transition: 0.4s ease-out;
+    // }
+    // .scs {
+    //     h3 {
+    //         color: $c-burger-bg;
+    //         margin-top: 0;
+
+    //         @include sm {
+    //         margin-bottom: 0; 
+    //         }
+    //     }
+    //     p {
+    //         color: $c-burger-bg-hov;
+    //         line-height: 1.6;
+    //         text-align: justify;
+    //         font-size: 16px;
+    //         margin: auto 0;
+    //     }
+    // }
+    
+    
+
 
 
 //experiment end

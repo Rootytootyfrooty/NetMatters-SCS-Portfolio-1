@@ -76,6 +76,9 @@
         transition: transform 1s ease, background 1s ease;
         overflow: hidden;
     }
+    @include dm {
+        border-color: $c-burger;
+    }
 }
 //sidebar buttons, not including social media or K
 .btn {
@@ -129,7 +132,7 @@
         // border-right: 1px solid $c-burger-bg;
         z-index: 2;
         @include dm {
-            background-color: $c-sidebar-dk;
+            background-color: $c-burger-bg;
         }
         a {
             display: flex;
@@ -139,13 +142,14 @@
             text-align: center; 
             @include dm {
                 color: $c-burger;
-                background-color: $c-sidebar-dk;
+                background-color: $c-burger-bg;
             &:hover {
                 background-color: $c-burger-bg-hov;
             }
             }
         }
     }
+    
     .sidebar {
         padding: 0;
         height: 90vh;
@@ -166,8 +170,7 @@
         height: 32px;
         width: 32px;
         transition: background .5s, transform .1s ease;
-        transform: scale(1);
-        
+        transform: scale(1);   
     }
   .soc-med--#{$name}:hover {
         background-color: $color;
@@ -176,9 +179,7 @@
         transition: background .2s, transform .1s ease;
         transform: scale(1.1);
         border-radius: 2px;
-        @include dm {
-            background-color: $color;
-        }
+        
     }
   }
 
@@ -192,7 +193,7 @@
     gap: 10px;
     li {
         list-style: none;
-        background-color: $c-burger-bg;
+        background-color: $c-sidebar-dk;
         width: 40px;
         height: 40px;
         border-radius: 3px;
@@ -203,7 +204,10 @@
             width: 100%;
             height: 100%;
             color: inherit;
-            
+        @include dm {
+                background-color: $c-sidebar-dk;
+                
+            }
         }
     }
 }
