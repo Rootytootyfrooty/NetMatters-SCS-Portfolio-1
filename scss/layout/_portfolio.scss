@@ -48,6 +48,13 @@
             filter: brightness(80%);
             transition: filter 1s ease;
         }
+        h3 {
+            font-size: 15px;
+            height: 50px;
+        }
+        .hov-me {
+            display: block;
+        }
     }
         @include md {
             img {
@@ -77,6 +84,9 @@
             opacity: 1;
         }
     }
+}
+.hov-me {
+    display: none;
 }
 .proj {
     display: flex;
