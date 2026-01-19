@@ -11,7 +11,8 @@
     #introtext {
         display: flex;
         flex-direction: column;
-        width: 50vw;
+        // width: 50vw;
+        max-width: 50vw;
         margin: 0 auto;
         text-align: center;
         align-items: center;
@@ -19,20 +20,22 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        font-size: 12px;
+        @include sm {
+            font-size: 20px;
+        }
         @include md {
             padding-left: $sidebar-width;
+            font-size: 20px;
+            max-width: none;
+        } 
+        @include sm {
             font-size: 25px;
-            @include ls {
-                padding-left: 0;
-                font-size: 20px;
-                text-wrap: wrap;
-            }
-        }
+        } //landscape phone
         @include ls {
             padding-left: 0;
             h1 {
-                font-size: 20px;
-                text-wrap: wrap;
+                white-space: nowrap;
             }
         }
         //works as outline around font so it can be read on any colour background
@@ -46,7 +49,7 @@
         h1 {
             @include ls {
                 padding-left: 0;
-                font-size: 20px;
+                font-size: 26px;
                 text-wrap: wrap;
             }
         }
@@ -80,4 +83,38 @@
     @include md {
         font-size: 30px;
     }
+}
+
+//
+.anim-name {
+    display: flex;
+    white-space: pre-wrap;
+    flex-direction: row;
+    color: #eee;
+    cursor: pointer;
+    span {
+        white-space: pre;
+        opacity: 0;
+        transform: translate(-2px,4px) scale(.9);
+        animation: fadeIn .4s ease-out forwards;
+    }
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translate(0,0) scale(1);
+  }
+}
+
+.burger-clicked::after {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.4s;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    content: "";
 }

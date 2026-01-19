@@ -1,8 +1,10 @@
 .burger {
     @include style-reset;
     display: inline-block;
-    position: relative;
+    position: fixed;
     cursor: pointer;
+    top: 0;
+    z-index: 19;
     width: 63px;
     height: 56px;
     background-color: $c-burger-bg;
@@ -115,22 +117,22 @@
 }
 #sidebar {
     display: none;
+    flex-direction: column;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    width: $sidebar-width;
+    background-color: $c-sidebar;
+    position: fixed;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 21;
     @include md {
         display: flex;
-        flex-direction: column;
-        gap: 25px;
-        margin: 0;
-        padding: 0;
-        width: $sidebar-width;
-        background-color: $c-sidebar;
-        position: fixed;
-        height: 100%;
-        overflow: hidden;
-        text-align: center;
-        align-items: center;
-        justify-content: space-evenly;
-        // border-right: 1px solid $c-burger-bg;
-        z-index: 2;
+        
         @include dm {
             background-color: $c-burger-bg;
         }
