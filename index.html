@@ -125,24 +125,34 @@
         <section id="portfolio" class="containerid">
             <h2>Portfolio</h2>
             <div class="porpro">
-                <a href="netmatters.kathryn-root.netmatters-scs.co.uk" target="_blank" class="project" rel="noopener noreferrer">
+                <a href="https://netmatters.kathryn-root.netmatters-scs.co.uk" target="_blank" class="project" rel="noopener noreferrer">
                     <div class="project1 proj">
                         <span class="css cl">CSS/Sass</span><span class="html cl">HTML</span>
                         <img src="img/project-1.png" alt="A picture of Project 1" />
-                        <h3>The Netmatters Homepage</h3>
-                        <p class="hov-me">
-                            This project was to recreate the old Netmatters homepage. 
-                            I used HTML and sass-compiled CSS.
-                        </p>
-                        <p>View Project &#8594;</p>
+                        <div class="project-text">
+                            <h3 class="hover-split">
+                                <span>The Netmatters Homepage</span>
+                                <span>The Netmatters Homepage</span>
+                                <span>This project was to recreate the old Netmatters homepage. 
+                                I used HTML, sass-compiled CSS, and JavaScript.</span>
+                            </h3>
+                            <p class="view-project">View Project &#8594;</p>
+                        </div>
                     </div>
                 </a>
                 <a href="https://github.com/Rootytootyfrooty/NetMatters-SCS-Portfolio-1" target="_blank" class="project" rel="noopener noreferrer">
                     <div class="project2 proj">
                         <span class="css cl">CSS/Sass</span><span class="html cl">HTML</span>
+                        <span class="js cl">JavaScript</span>
                         <img src="img/project-2.png" alt="A picture of Project 2" />
-                        <h3>Portfolio Project</h3>
-                        <p>View Project &#8594;</p>
+                        <div class="project-text">
+                            <h3 class="hover-split">
+                                <span>Portfolio Project</span>
+                                <span>Portfolio Project</span>
+                                <span>This project is this portfolio itself. I've used HTML, CSS, and JavaScript.</span>
+                            </h3>
+                            <p class="view-project">View Project &#8594;</p>
+                        </div>
                     </div>
                 </a>
                 <a href="#" target="_blank" class="project" rel="noopener noreferrer">
@@ -236,28 +246,27 @@
                 <form action="#" method="post" id="form">
                     <div class="input-control" id="first-name">
                         <label for="ffname" class="hidden">First Name</label>
-                        <input type="text" id="ffname" name="first-name" autocomplete="given-name" placeholder="*First Name" />
-                        <div class="error"></div>
+                        <input type="text" id="ffname" class="error" name="first-name" autocomplete="given-name" placeholder="*First Name" data-placeholder="*First Name" />
                     </div>
                     <div class="input-control" id="last-name">
                         <label for="flname" class="hidden">Last Name</label>
-                        <input type="text" id="flname" name="last-name" autocomplete="family-name" placeholder="Last Name" />
-                        <div class="error"></div>
+                        <input type="text" id="flname" class="error" name="last-name" autocomplete="family-name" placeholder="*Last Name" data-placeholder="*Last Name" />
+                        <!-- <div class="error"></div> -->
                     </div>
                     <div class="input-control" id="email">
                         <label for="femail" class="hidden">Email Address</label>
-                        <input type="text" id="femail" name="email" autocomplete="email" placeholder="*Email Address" />
-                        <div class="error"></div>
+                        <input type="text" id="femail" class="error" name="email" autocomplete="email" placeholder="*Email Address" data-placeholder="*Email Address" />
+                        <!-- <div class="error"></div> -->
                     </div>
                     <div class="input-control" id="subject">
                         <label for="fsubject" class="hidden">Subject</label>
-                        <input type="text" id="fsubject" name="subject" placeholder="*Subject..." />
-                        <div class="error"></div>
+                        <input type="text" id="fsubject" class="error" name="subject" placeholder="*Subject..." data-placeholder="*Subject..." />
+                        <!-- <div class="error"></div> -->
                     </div>
                     <div class="input-control" id="message">
                         <label for="fmessage" class="hidden">Message</label>
-                        <textarea id="fmessage" name="message" rows="5" placeholder="*Message..."></textarea>
-                        <div class="error"></div>
+                        <textarea id="fmessage" class="error" name="message" rows="5" placeholder="*Message... Character Limit: 1,000" data-placeholder="*Message... Character Limit: 1,000" data-no-clear ></textarea>
+                        <!-- <div class="error"></div> -->
                     </div>
                     <button type="submit">Submit</button>
                 </form>

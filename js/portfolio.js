@@ -49,7 +49,6 @@ sidebar.addEventListener("click", (event) => {
 });
 body.addEventListener("click", (event) => {
     if (!body.classList.contains("burger-clicked")) return;
-    console.log(event);
     body.classList.add("default");
     body.classList.remove("burger-clicked");
     sidebar.style.display = "none";
@@ -71,70 +70,116 @@ window.addEventListener("resize", function(event) {
 });
 
 //contact form validation
-
 const form = document.getElementById("form");
-const firstName = document.getElementById("ffname");
-const lastName = document.getElementById("flname");
-const email = document.getElementById("femail");
-const subject = document.getElementById("fsubject");
-const message = document.getElementById("fmessage");
+const firstNameIn = document.getElementById("ffname");
+const firstNameCo = document.getElementById("first-name");
+const lastNameIn = document.getElementById("flname");
+const lastNameCo = document.getElementById("last-name");
+const emailIn = document.getElementById("femail");
+const emailCo = document.getElementById("email");
+const subjectIn = document.getElementById("fsubject");
+const subjectCo = document.getElementById("subject");
+const formMessageIn = document.getElementById("fmessage");
+const formMessageCo = document.getElementById("message");
 
 form.addEventListener("submit", event => {
   event.preventDefault();
   validateInputs();
 });
+// error function when user input is invalid
+const setError = (field, message) => {
+  const control = field.closest(".input-control");
+  if (!control) return;
 
-const setError = (element, message) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
+  field.placeholder = message;
 
-    errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success')
-}
+  if (!field.hasAttribute("data-no-clear")) {
+    field.value = "";
+  }
 
-const setSuccess = element => {
-  const inputControl = element.parentElement;
-  const errorDisplay = inputControl.querySelector(".error");
-
-  errorDisplay.innertext = "";
-  inputControl.classList.add("success");
-  inputControl.classList.remove("error");
+  control.classList.add("error");
+  control.classList.remove("success");
 };
+//success function
+const setSuccess = (field) => {
+  const control = field.closest(".input-control");
+  if (!control) return;
+
+  field.placeholder = field.dataset.placeholder;
+  control.classList.add("success");
+  control.classList.remove("error");
+}
 
 const isValidEmail = email => {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
 const validateInputs = () => {
-  const firstNameValue = firstName.value.trim();
-  const lastNameValue = lastName.value.trim();
-  const emailValue = email.value.trim();
-  const subjectValue = subject.value.trim();
-  const messageValue = message.value.trim();
+  const firstNameValue = firstNameIn.value.trim();
+  const lastNameValue = lastNameIn.value.trim();
+  const emailValue = emailIn.value.trim();
+  const subjectValue = subjectIn.value.trim();
+  const formMessageValue = formMessageIn.value.trim();
 
   if(firstNameValue === "") {
-    setError(firstName, "First name is required");
+    setError(firstNameIn, "First name is required");
   } else {
-    setSuccess(firstName);
+    setSuccess(firstNameIn);
+  }
+  if(lastNameValue === "") {
+    setError(lastNameIn, "Last name is required");
+  } else {
+    setSuccess(lastNameIn);
   }
   if(emailValue === "") {
-    setError(email, "E-mail is required");
+    setError(emailIn, "E-mail is required");
   } else if (!isValidEmail(emailValue)) {
-    setError(email, "Please provide a valid email address");
+    setError(emailIn, "Please provide a valid email address");
+  } else if (emailValue === "kathryn.root@netmatters-scs.com") {
+    setError(emailIn, "You're meant to use your own email");
   } else {
-    setSuccess(email);
+    setSuccess(emailIn);
   }
   if(subjectValue === "") {
-    setError(subject, "Subject is required");
+    setError(subjectIn, "Subject is required");
   } else {
-    setSuccess(subject);
+    setSuccess(subjectIn);
   }
-  if(messageValue === "") {
-    setError(message, "Message is required");
-  } else if (messageValue.length > 1000) {
-    setError(message, "Message limit: 1,000 characters")
+  if(formMessageValue === "") {
+    setError(formMessageIn, "Message is required");
+  } else if (formMessageValue.length > 1000) {
+    setError(formMessageIn, "Message limit: 1,000 characters")
   } else {
-    setSuccess(message);
+    setSuccess(formMessageIn);
   }
 };
+
+const viewProject = document.querySelector(".view-project");
+const hoverSplitH3 = document.querySelectorAll(".hover-split");
+
+const project = document.getElementsByClassName("view-project");
+const splitH3 = document.getElementsByClassName("hover-split")
+
+for ( let i = 0; i < project.length; i++ ) {
+  splitH3[i].addEventListener("mouseenter", () => {
+  project[i].style.display = "none";
+  });
+  splitH3[i].addEventListener("mouseleave", () => {
+  project[i].style.removeProperty("display");
+  });
+}
+
+// hoverSplitH3.forEach(h3 => {
+//   h3.addEventListener("mouseenter", () => {
+//     viewProject.style.display = "none";
+//     console.log("hello");
+//   });
+
+// });
+
+// hoverSplitH3.forEach(h3 => {
+//   h3.addEventListener("mouseleave", () => {
+//     viewProject.style.removeProperty("display");
+//   });
+
+// });

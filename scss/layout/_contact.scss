@@ -26,10 +26,34 @@
     #message {
         flex-grow: 2;
         font-family: "Plus Jakarta Sans", sans-serif;
-        height: 200px;
+        max-height: 300px;
     }
-    input,
-    textarea,
+    .input-control {
+        input,
+        textarea {
+            height: 50px;
+            padding: 0 15px;
+            font-size: 20px;
+            color: darken($c-sidebar, 20%);
+            box-shadow: none;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            width: 100%;
+            &:focus-visible {
+                outline-color: rgba($c-sidebar, 0.5);
+                outline-style: inset;
+                box-shadow: 0px 2px 2px $c-sidebar;
+                @include dm {
+                        outline-color: $c-burger;
+                }
+            }
+                @include dm {
+                    color: $c-burger;
+                }
+        }
+    }
+    #fmessage {
+        height: 100%;
+    }
     button {
         height: 50px;
         padding: 0 15px;
@@ -49,7 +73,6 @@
                 color: $c-burger;
             }
     }
-    
 }
 @include lg {
     #contact {
@@ -73,8 +96,8 @@
     button {
         width: 90vw;
     }
-    #message {
-        height: 300px;
+    #fmessage {
+        height: 100%;
 
     }
 }
@@ -99,6 +122,7 @@
     border-radius: 4px;
     // box-shadow: 0 4px 16px rgba($c-burger-bg-hov, 0.15);
     max-width: 700px;
+    max-height: 650px;
     @include lg {
         margin: 0 auto;
         margin-bottom: 48px;
@@ -138,13 +162,20 @@
 
 //new form with js
 
-.input-control.success input {
+.input-control.success input, 
+.input-control.success textarea {
     border-color: green;
 }
-.input-control.error input {
+.error input, .error textarea {
     border-color: rgb(255, 0, 0);
-    background-color: rgba(255, 0, 0, 0.5)
+    background-color: rgba(255, 0, 0, 0.1);
+    color: darkred;
 }
-.input-control .error {
-    color: red;
+.error input::placeholder, 
+.error textarea::placeholder {
+    color: rgba(139, 0, 0, 0.8);
 }
+
+// input-area .error {
+//     color: darkred;
+// }
