@@ -4,8 +4,10 @@ main {
     @include md {
         padding-left: $sidebar-width;
     }
-    @include ls {
-        padding-left: 0;
+    section {
+        @include ls {
+            padding-left: $sidebar-width;
+        }
     }
     .containerid {
         margin: 0 auto;

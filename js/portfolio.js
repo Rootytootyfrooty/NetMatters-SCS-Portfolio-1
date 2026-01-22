@@ -24,52 +24,69 @@ document.addEventListener("DOMContentLoaded", () => {
     animateText();
   });
 });
-
-
-// burger button functionality
+//burger button functionality - new/experiment
 const burgerBtn = document.getElementById("burger");
 const sidebar = document.getElementById("sidebar");
-const introText = document.getElementById("introtext");
-const scrollText = document.getElementById("scroll");
-const body = document.getElementById("top");
+const burgerStyle = document.getElementById("mid")
 
 burgerBtn.addEventListener("click", (event) => {
-    event.stopPropagation();
-    sidebar.style.display = "flex";
-    introText.style.paddingLeft = "225px";
-    body.classList.add("burger-clicked");
-    body.classList.remove("default");
-    if ( window.innerWidth <= 767 ) {
-        introText.style.display = "none";
-        scrollText.style.display = "none";
-    }
-});
-sidebar.addEventListener("click", (event) => {
-    event.stopPropagation();
-});
-body.addEventListener("click", (event) => {
-    if (!body.classList.contains("burger-clicked")) return;
-    body.classList.add("default");
-    body.classList.remove("burger-clicked");
-    sidebar.style.display = "none";
-    introText.style.paddingLeft = "0";
-    introText.style.display = "flex";
-    scrollText.style.display = "flex";
-    scrollText.style.paddingLeft = "0";
-    if ( window.innerWidth > 767 ) {
-        sidebar.style.display = "flex";
-    }
-});
-window.addEventListener("resize", function(event) {
-    if ( window.innerWidth > 767 ) {
-            sidebar.style.display = "flex";
-        }
-    if ( window.innerWidth <= 767 ) {
-        sidebar.style.display = "none";
-    }
+  if ( sidebar.classList.contains("default") ){
+    sidebar.classList.add("sidebar-open");
+    sidebar.classList.remove("default");
+    burgerStyle.classList.add("burger-clicked");
+    burgerStyle.classList.remove("mid");
+  } else {
+    sidebar.classList.add("default");
+    sidebar.classList.remove("sidebar-open");
+    burgerStyle.classList.add("mid");
+    burgerStyle.classList.remove("burger-clicked");
+  }
 });
 
-//contact form validation
+// burger button functionality - old
+// const burgerBtn = document.getElementById("burger");
+// const sidebar = document.getElementById("sidebar");
+// const introText = document.getElementById("introtext");
+// const scrollText = document.getElementById("scroll");
+// const body = document.getElementById("top");
+
+// burgerBtn.addEventListener("click", (event) => {
+//     event.stopPropagation();
+//     sidebar.style.display = "flex";
+//     introText.style.paddingLeft = "225px";
+//     body.classList.add("burger-clicked");
+//     body.classList.remove("default");
+//     if ( window.innerWidth <= 767 ) {
+//         introText.style.display = "none";
+//         scrollText.style.display = "none";
+//     }
+// });
+// sidebar.addEventListener("click", (event) => {
+//     event.stopPropagation();
+// });
+// body.addEventListener("click", (event) => {
+//     if (!body.classList.contains("burger-clicked")) return;
+//     body.classList.add("default");
+//     body.classList.remove("burger-clicked");
+//     sidebar.style.display = "none";
+//     introText.style.paddingLeft = "0";
+//     introText.style.display = "flex";
+//     scrollText.style.display = "flex";
+//     scrollText.style.paddingLeft = "0";
+//     if ( window.innerWidth > 767 ) {
+//         sidebar.style.display = "flex";
+//     }
+// });
+// window.addEventListener("resize", function(event) {
+//     if ( window.innerWidth > 767 ) {
+//             sidebar.style.display = "flex";
+//         }
+//     if ( window.innerWidth <= 767 ) {
+//         sidebar.style.display = "none";
+//     }
+// });
+
+//contact form validation. in = user input, co = control
 const form = document.getElementById("form");
 const firstNameIn = document.getElementById("ffname");
 const firstNameCo = document.getElementById("first-name");
@@ -86,7 +103,20 @@ form.addEventListener("submit", event => {
   event.preventDefault();
   validateInputs();
 });
-// error function when user input is invalid
+
+// live error when typing email
+const liveError = (field) => {
+  const control = field.closest(".input-control");
+  control.classList.add("error");
+  control.classList.remove("success");
+};
+// live success when typing email
+const liveSuccess = (field) => {
+  const control = field.closest(".input-control");
+  control.classList.add("success");
+  control.classList.remove("error");
+};
+// error function when user input is invalid (after pressing submit)
 const setError = (field, message) => {
   const control = field.closest(".input-control");
   if (!control) return;
@@ -100,7 +130,7 @@ const setError = (field, message) => {
   control.classList.add("error");
   control.classList.remove("success");
 };
-//success function
+// success function (after pressing submit)
 const setSuccess = (field) => {
   const control = field.closest(".input-control");
   if (!control) return;
@@ -114,10 +144,12 @@ const isValidEmail = email => {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
+
+const emailValue = emailIn.value.trim();
+
 const validateInputs = () => {
   const firstNameValue = firstNameIn.value.trim();
   const lastNameValue = lastNameIn.value.trim();
-  const emailValue = emailIn.value.trim();
   const subjectValue = subjectIn.value.trim();
   const formMessageValue = formMessageIn.value.trim();
 
@@ -153,7 +185,46 @@ const validateInputs = () => {
     setSuccess(formMessageIn);
   }
 };
+//live email checking function
+emailCo.addEventListener("input", event => {
+  const value = event.target.value;
 
+  if (!isValidEmail(value)) {
+      liveError(event.target);
+    } else {
+      liveSuccess(event.target);
+    }
+});
+//live form message character limit function
+formMessageCo.addEventListener("input", event => {
+  const value = event.target.value.length;
+
+  if ( value >= 1000 ) {
+    liveError(event.target);
+  } else {
+    liveSuccess(event.target);
+  }
+});
+//attempt at live character limit function for names & subject
+const textBox = document.getElementsByClassName("char-lim");
+
+for ( let i = 0; i < textBox.length; i++ ) {
+  textBox[i].addEventListener("input", () => {
+    if ( textBox[i].value.length < 20 && textBox[i].value.length > 0 ) {
+      textBox[i].classList.remove("error");
+      textBox[i].classList.add("success");
+      console.log("okay");
+    } else {
+      textBox[i].classList.add("error");
+      textBox[i].classList.remove("success");
+      console.log("not okay");
+    }
+  });
+
+}
+
+
+//makes the view project text disappear when hovering over the .hover-split H3s in the portfolio section
 const viewProject = document.querySelector(".view-project");
 const hoverSplitH3 = document.querySelectorAll(".hover-split");
 
@@ -169,17 +240,3 @@ for ( let i = 0; i < project.length; i++ ) {
   });
 }
 
-// hoverSplitH3.forEach(h3 => {
-//   h3.addEventListener("mouseenter", () => {
-//     viewProject.style.display = "none";
-//     console.log("hello");
-//   });
-
-// });
-
-// hoverSplitH3.forEach(h3 => {
-//   h3.addEventListener("mouseleave", () => {
-//     viewProject.style.removeProperty("display");
-//   });
-
-// });

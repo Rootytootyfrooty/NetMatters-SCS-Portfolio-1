@@ -20,7 +20,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 12px;
+        font-size: 13px;
         @include sm {
             font-size: 20px;
         }
@@ -30,10 +30,10 @@
             max-width: none;
         } 
         @include sm {
-            font-size: 25px;
+            font-size: 24px;
         } //landscape phone
         @include ls {
-            padding-left: 0;
+            padding-left: $sidebar-width;
             h1 {
                 white-space: nowrap;
             }
@@ -49,7 +49,7 @@
         h1 {
             @include ls {
                 padding-left: 0;
-                font-size: 26px;
+                font-size: 40px;
                 text-wrap: wrap;
             }
         }
@@ -85,7 +85,7 @@
     }
 }
 
-//
+// name animation
 .anim-name {
     display: flex;
     white-space: pre-wrap;
@@ -105,7 +105,7 @@
     transform: translate(0,0) scale(1);
   }
 }
-
+//overlay that shades screen on burger button click
 .burger-clicked::after {
     opacity: 1;
     width: 100%;

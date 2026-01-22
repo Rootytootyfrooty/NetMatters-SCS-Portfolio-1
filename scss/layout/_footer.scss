@@ -26,8 +26,11 @@ footer {
             color: $c-burger;
         }
     }
+
+}
     @include ls {
+        footer {
         margin: 0 auto;
-        padding-left: 0;
+        padding-left: $sidebar-width;
     }
 }

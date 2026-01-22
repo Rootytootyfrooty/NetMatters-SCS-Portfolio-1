@@ -6,9 +6,6 @@
     margin-top: 0;
     margin-left: auto;
     margin-right: auto;
-    @include ls {
-        padding: 0 auto;
-    }
     @include dm {
         h2, address {
             color: $c-burger;
@@ -132,7 +129,7 @@
     }
     @include ls {
         margin: 0 auto;
-        width: 80vw;
+        width: 500px;
     }
 }
 

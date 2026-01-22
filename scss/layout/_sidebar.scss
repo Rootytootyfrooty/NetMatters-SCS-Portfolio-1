@@ -4,6 +4,7 @@
     position: fixed;
     cursor: pointer;
     top: 0;
+    right: 5px;
     z-index: 19;
     width: 63px;
     height: 56px;
@@ -44,8 +45,30 @@
         display: none;
     }
     @include ls {
-        display: inline-block;
+        display: none;
     }
+}
+//burger styling when clicked
+.burger-clicked {
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 45px;
+        height: 4px;
+        background-color: darken($c-burger, 40%);
+        transform: translate(-50%, -50%) rotate(45deg);
+        transition: 0.4s;
+            &::after {
+                content: "";
+                position: absolute;
+                width: 45px;
+                height: 4px;
+                left: 50%;
+                transform: translateX(-50%) rotate(90deg);
+                transition: 0.4s;
+                background-color: darken($c-burger, 40%);
+}
+
 }
 
 //the big initial K
@@ -115,24 +138,40 @@
             border: none;
         }
 }
+
+.default {
+        left: -$sidebar-width;
+        // @include ls {
+        //     left: -$sidebar-width;
+        // }
+    }
+    .sidebar-open {
+    left: 0;
+    transition: left 0.4s ease;
+        // @include ls {
+        //     left: 0;
+        // }
+    }
+
 #sidebar {
-    display: none;
+    position: fixed;
+    display: flex;
     flex-direction: column;
     gap: 25px;
     margin: 0;
     padding: 0;
+    top: 0;
+    
     width: $sidebar-width;
     background-color: $c-sidebar;
-    position: fixed;
     height: 100%;
-    overflow: hidden;
     text-align: center;
     align-items: center;
     justify-content: space-evenly;
     z-index: 21;
+    transition: left 0.4s ease;
     @include md {
-        display: flex;
-        
+        left: 0;
         @include dm {
             background-color: $c-burger-bg;
         }
@@ -156,11 +195,21 @@
         padding: 0;
         height: 90vh;
     }
-    @include ls {
-            display: none;
-        }
+    // @include ls {
+    //         left: -$sidebar-width;
+    //         .sidebar-open {
+    //     left: 0;
+    // }
+    //     }
 }
+//side bar style when burger button clicked
 
+// @include ls {
+//     .default {
+//         left: -$sidebar-width;
+//     }
+    
+// }
 //soc media buttons
 
 @each $name, $color in $soc-med-colors {
