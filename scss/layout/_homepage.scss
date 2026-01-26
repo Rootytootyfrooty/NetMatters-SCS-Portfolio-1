@@ -70,8 +70,6 @@
         @include ls {
             display: none;
         }
-        p {
-        }
         @include md {
             padding-left: $sidebar-width;
             bottom: 0;

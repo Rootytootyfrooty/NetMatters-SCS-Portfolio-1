@@ -123,7 +123,7 @@ const setError = (field, message) => {
 
   field.placeholder = message;
 
-  if (!field.hasAttribute("data-no-clear")) {
+  if (!field.hasAttribute("data-no-clear") && field.type !== "email") {
     field.value = "";
   }
 
@@ -163,11 +163,11 @@ const validateInputs = () => {
   } else {
     setSuccess(lastNameIn);
   }
-  if(emailValue === "") {
+  if(emailIn.value === "") {
     setError(emailIn, "E-mail is required");
-  } else if (!isValidEmail(emailValue)) {
+  } else if (!isValidEmail(emailIn.value.trim())) {
     setError(emailIn, "Please provide a valid email address");
-  } else if (emailValue === "kathryn.root@netmatters-scs.com") {
+  } else if (emailIn.value.trim() === "kathryn.root@netmatters-scs.com") {
     setError(emailIn, "You're meant to use your own email");
   } else {
     setSuccess(emailIn);
@@ -205,19 +205,17 @@ formMessageCo.addEventListener("input", event => {
     liveSuccess(event.target);
   }
 });
-//attempt at live character limit function for names & subject
+// success live character limit function for names & subject
 const textBox = document.getElementsByClassName("char-lim");
 
 for ( let i = 0; i < textBox.length; i++ ) {
   textBox[i].addEventListener("input", () => {
-    if ( textBox[i].value.length < 20 && textBox[i].value.length > 0 ) {
-      textBox[i].classList.remove("error");
-      textBox[i].classList.add("success");
-      console.log("okay");
+    if ( textBox[i].value.length < 50 && textBox[i].value.length > 0 ) {
+      textBox[i].closest(".input-control").classList.remove("error");
+      textBox[i].closest(".input-control").classList.add("success");
     } else {
-      textBox[i].classList.add("error");
-      textBox[i].classList.remove("success");
-      console.log("not okay");
+      textBox[i].closest(".input-control").classList.remove("success");
+      textBox[i].closest(".input-control").classList.add("error");
     }
   });
 
@@ -240,3 +238,73 @@ for ( let i = 0; i < project.length; i++ ) {
   });
 }
 
+//change classes for animating .container-default divs sliding in on scroll
+// they transition as they enter the viewport regardless of scoll position
+
+
+
+const slideSection = document.querySelectorAll("section");
+const slideInner = document.querySelector(".container-default");
+const slideInners = Array.from(
+  document.querySelectorAll(".container-default")
+);
+
+  // const observer = new IntersectionObserver(
+  //   (entries, observer) => {
+  //     entries.forEach(entry => {
+  //       if (entry.isIntersecting) {
+  //         entry.target.classList.add("is-visible");
+  //         entry.target.classList.remove("container-default");
+  //         observer.unobserve(entry.target);
+  //       } 
+  //     });
+  //   },
+  //   {
+  //     root: null,
+  //     threshold: 0.03,
+  //     rootMargin: "0px 0px -50px 0px"
+  //   }
+  // );
+
+  // slideInner.forEach(el => observer.observe(el));
+
+// this is for the .container-default divs sliding in on scroll but tied to scroll position, also works in reverse.
+// not very smooth, though, if you're using a scroll wheel.
+
+const startScroll = slideInner.offsetTop - window.innerHeight;
+const endScroll = startScroll + 500;
+
+
+function scrollStop(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function updateElement(el) {
+  const rect = el.getBoundingClientRect();
+  const scrollY = window.scrollY;
+  const start = 
+    scrollY + rect.top - window.innerHeight;
+  const end = start + 600;
+  const progress = scrollStop (
+    (scrollY - start) / (end - start),
+    0,
+    1
+  );
+  const marginLeft = -100 + progress * 100;
+  el.style.marginLeft = `${marginLeft}%`;
+}
+
+let ticking = false;
+function onScroll() {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      slideInners.forEach(updateElement);
+      ticking = false;
+    });
+    ticking = true;
+  }
+}
+window.addEventListener("scroll", onScroll);
+window.addEventListener("load", () => {
+  slideInners.forEach(updateElement);
+});

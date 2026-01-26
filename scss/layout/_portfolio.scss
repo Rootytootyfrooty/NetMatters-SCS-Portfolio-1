@@ -48,15 +48,6 @@
             filter: brightness(80%);
             transition: filter 1s ease;
         }
-        // h3 {
-        //     font-size: 15px;
-        //     height: 50px;
-        // }
-        // .hov-me {
-        //     visibility: visible;
-        //     max-height: 150px;
-        //     transition: max-height 0.6s ease;
-        // }
     }
         @include sm {
             margin-bottom: 80px;
@@ -211,7 +202,10 @@
         transform: translateY(20px);
     }
 }
-.hover-split:hover span:nth-child(1) {
+.hover-split:hover span:nth-child(1),
+.hover-split:target span:nth-child(1),
+.hover-split:active span:nth-child(1),
+.hover-split:focus span:nth-child(1) {
     transform: translateY(0);
     @include md {
         transform: translateY(0);
@@ -232,7 +226,10 @@
         transform: translateY(-21px);
     }
 }
-.hover-split:hover span:nth-child(2) {
+.hover-split:hover span:nth-child(2),
+.hover-split:target span:nth-child(2),
+.hover-split:active span:nth-child(2),
+.hover-split:focus span:nth-child(2) {
     transform: translateY(70px);
 }
 .hover-split span:nth-child(3) {
@@ -245,7 +242,10 @@
         transform: translateY(-42px) scaleY(0);
     }
 }
-.hover-split:hover span:nth-child(3) {
+.hover-split:hover span:nth-child(3),
+.hover-split:target span:nth-child(3),
+.hover-split:active span:nth-child(3),
+.hover-split:focus span:nth-child(3) {
     transform: translateY(-50%) scaleY(1);
     @include lg {
         transform: translateY(-42px) scaleY(1);

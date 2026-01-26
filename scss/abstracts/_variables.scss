@@ -13,3 +13,30 @@ $sidebar-width: 225px;
     line-height: 0;
     @content;
 }
+
+//makes section slide in, controlled by JS
+@keyframes slide-in {
+    from {
+        margin-left: -100%;
+    }
+    to {
+        margin-left: 0;
+    }
+}
+
+.container-default {
+    position: relative;
+    margin-left: -100%;
+    padding: 0;
+    overflow: visible;
+}
+.is-visible {
+    animation: slide-in alternate forwards;
+    animation-timeline: scroll();
+}
+.containerid {
+    margin: 0 auto;
+    border-bottom: 4px solid lighten($c-burger-bg, 10%);
+    padding: 50px 30px;
+}
+
