@@ -1,5 +1,4 @@
 #examples {
-    // height: 40vh;
     @include ls {
         min-height: 100vh;
     }
@@ -14,4 +13,56 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+//css for prism.js
+.code-cont {
+    text-align: left;
+    overflow-x: scroll;
+    max-width: 315px;
+    max-height: 550px;
+    @include sm {
+        max-width: 400px;
+    }
+    @include md {
+        max-width: 640px;
+    }
+}
+.token:hover {
+    cursor: pointer;
+}
+.definitions {
+    text-align: center;
+    font-size: 20px;
+    border: 1px black solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+//colour for the sass map
+#colours {
+    position: relative;
+    right: calc(-100% + 40px);
+}
+//to display the colours in the sass map, prism.js doesn't do that
+//not really necessary and kind of wonkily positioned but I'm keeping it
+#colours::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    height: 185px;
+    width: 20px;
+    bottom: 72px;
+    background: linear-gradient(
+        to bottom,
+        #f7b322 0%, #f7b322 12.5%,
+        #67809f 12.5%, #67809f 25%,
+        #4183d7 25%, #4183d7 37.5%,
+        #2ecc71 37.5%, #2ecc71 50%,
+        #d64541 50%, #d64541 62.5%,
+        #926fb1 62.5%, #926fb1 75%,
+        #f62459 75%, #f62459 87.5%,
+        #ce4125 87.5%, #ce4125 100%
+    );
+    z-index: 55;
 }

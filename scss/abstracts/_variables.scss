@@ -32,7 +32,6 @@ $sidebar-width: 225px;
 }
 .is-visible {
     animation: slide-in alternate forwards;
-    animation-timeline: scroll();
 }
 .containerid {
     margin: 0 auto;

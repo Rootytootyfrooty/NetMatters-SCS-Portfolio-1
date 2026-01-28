@@ -71,7 +71,7 @@
 
 }
 
-//the big initial K
+//the big initial K, spins on hover
 .sb-item-k {
     height: 190px;
     width: 190px;
@@ -138,19 +138,13 @@
             border: none;
         }
 }
-
+//class for sidebar before the burger button is clicked
 .default {
         left: -$sidebar-width;
-        // @include ls {
-        //     left: -$sidebar-width;
-        // }
     }
     .sidebar-open {
     left: 0;
     transition: left 0.4s ease;
-        // @include ls {
-        //     left: 0;
-        // }
     }
 
 #sidebar {
@@ -161,7 +155,6 @@
     margin: 0;
     padding: 0;
     top: 0;
-    
     width: $sidebar-width;
     background-color: $c-sidebar;
     height: 100%;
@@ -190,6 +183,7 @@
             }
         }
     }
+    //landscape mobile, sidebar is too tall
     @include ls {
         overflow-y: scroll;
     }
@@ -200,22 +194,7 @@
             min-height: 500px;
         }
     }
-    // @include ls {
-    //         left: -$sidebar-width;
-    //         .sidebar-open {
-    //     left: 0;
-    // }
-    //     }
 }
-//side bar style when burger button clicked
-
-// @include ls {
-//     .default {
-//         left: -$sidebar-width;
-//     }
-    
-// }
-//soc media buttons
 
 @each $name, $color in $soc-med-colors {
     .soc-med--#{$name} svg {

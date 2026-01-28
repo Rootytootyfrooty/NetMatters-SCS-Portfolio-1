@@ -1,4 +1,4 @@
-
+// flex container that holds all the PORtfolio PROjects
 .porpro {
     display: flex;
     flex-wrap: wrap;
@@ -12,6 +12,7 @@
             height: 110px;
         }
     }
+    //the anchor tags for each project
     .project {
         flex: 100%;
         min-width: 0;
@@ -64,11 +65,6 @@
     }
     a {
         color: $c-burger-bg;
-        // &:hover {
-        //     p {
-        //         display: none;
-        //     }
-        // }
     }
     img {
         margin: 5px auto;
@@ -82,7 +78,7 @@
         }
     }
 }
-
+//the divs and everything inside each .project anchor tag
 .proj {
     display: flex;
     align-items: center;
@@ -91,12 +87,6 @@
     height: auto;
     min-height: 450px;
     max-height: 1800px;
-        // @include sm {
-        //     min-height: 550px;
-        // }
-        // @include md {
-        //     min-height: 750px;
-        // }
     img {
         max-width: 100%;
         object-fit: scale-down;
@@ -108,7 +98,7 @@
 }
 
 // coding used tabs on portfolio imgs
-
+// I don't remember what I meant by cl... Coding Language?
 .cl {
     position: absolute;
     top: 0;
@@ -153,39 +143,20 @@
     margin-top: 0;
     margin-bottom: 20px;
     transition: 0s;
-    // position: relative;
-    // top: 80%;
 }
+//controls the styling for the project titles that 'split' open to
+//show a description. class name changes controlled by JS
 .hover-split {
     width: 100%;
     display: flex;
     flex-direction: column;
-    // text-wrap: nowrap;
-    // min-width: 220px;
-    // max-width: 450px;
-    // margin: 10px auto; 
-    // position: relative;
-    // top: 25%;
-    // left: 0;
-    // transform: translate(-50%,-50%);
     font-size: 22px; 
     color: $c-burger-bg;
-    // margin-top: 50px;
-    // @include sm {
-    //     // top: 10%;
-    // }
-    // @include sm {
-    //     font-size: 30px;
-    // }
-    // @include lg {
-    //     font-size: 35px;
-    //     // left: 50%;
-    //     // top: 85%;
-    // }
     @include md {
         font-size: 35px;
     }
 }
+//first child = first copy of title
 .hover-split span:nth-child(1) {
     transition: 0.5s;
     clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
@@ -198,7 +169,6 @@
         font-size: 33px; 
     }
     @include lg {
-        // overflow: visible;
         transform: translateY(20px);
     }
 }
@@ -211,6 +181,7 @@
         transform: translateY(0);
     }
 }
+//second child = second copy of title
 .hover-split span:nth-child(2) {
     text-wrap: nowrap;
     transition: 0.5s;
@@ -222,7 +193,6 @@
         transform: translateY(-20px);
     }
     @include lg {
-        // overflow: visible;
         transform: translateY(-21px);
     }
 }
@@ -232,6 +202,7 @@
 .hover-split:focus span:nth-child(2) {
     transform: translateY(70px);
 }
+//third child = description of project
 .hover-split span:nth-child(3) {
     font-size: 14px;
     transform: translateY(-50%) scaleY(0);
@@ -251,86 +222,3 @@
         transform: translateY(-42px) scaleY(1);
     }
 }
-// .hover-split span:nth-child(1){
-//   position: fixed;
-//   bottom: 55%; 
-//   left: 50%; 
-//   color: $c-burger-bg;
-//   transition: 0.5s;
-//   clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-//   overflow: hidden;
-//   transform: translateX(-50%);
-//   @include sm {
-//         bottom: 40%;
-//     }
-// }
-// .hover-split:hover span:nth-child(1){
-//   transform: translateY(-65px) translateX(-50%);
-// //   transform: translateX(-50%);
-//     @include md {
-//         transform: translateY(-85px);
-//     }
-// }
-// .hover-split span:nth-child(2){
-//   position: fixed;
-//   margin-bottom: 30px;
-//   bottom: calc( 55% - 30px ); 
-//   left: 50%; 
-//   color: $c-burger-bg;
-//   transition: 0.5s;
-//   clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-//   overflow: hidden;
-//   transform: translateX(-50%);
-//   @include sm {
-//         bottom: calc( 40% - 30px );
-//     }
-// }
-// .hover-splith2:hover span:nth-child(2){
-//   transform: translateY(65px);
-//   @include md {
-//         transform:translateY(-85px);
-//     }
-// }
-
-// .hover-split span:nth-child(3){
-//   position: fixed;
-//   bottom: 55%; 
-//   left: 50%;
-//   transform: translateY(-50%) translateX(-50%) scaleY(0);
-//   min-width: 220px;
-//   max-width: 450px;
-//   color: $c-burger-bg;
-//   font-size: 13px;
-//   @include sm {
-//         bottom: 42%;
-//     }
-//   @include md {
-//         // transform:translateY(-30%) translateX(-50%) scaleY(0);
-//     }
-//   @include lg {
-//     font-size: 15px;
-//     // top: 15%; 
-//     // left: 0;
-//     // width: 95%;
-//   }
-//   font-weight: 500;
-//   text-align: center;
-// //   padding-left: 20px;
-// //   margin-left: 5px;
-//   transition:0.5s;
-// }
-// .hover-split:hover span:nth-child(3){
-//   transform: translateY(-50%) translateX(-50%) scaleY(1);
-//   @include md {
-//         // transform: translateY(-30%) translateX(-50%) scaleY(1);
-//     }
-// }
-// .hover-split:hover {
-//     // margin-top: 60px;
-//     transition: 0s;
-// }
-
-// $screen-sm: 576px;
-// $screen-md: 768px;
-// $screen-lg: 992px;
-// $screen-xl: 1200px;

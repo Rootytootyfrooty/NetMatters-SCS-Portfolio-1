@@ -239,7 +239,7 @@ for ( let i = 0; i < project.length; i++ ) {
 }
 
 //change classes for animating .container-default divs sliding in on scroll
-// they transition as they enter the viewport regardless of scoll position
+// they transition as they enter the viewport regardless of scroll position
 
 
 
@@ -307,4 +307,96 @@ function onScroll() {
 window.addEventListener("scroll", onScroll);
 window.addEventListener("load", () => {
   slideInners.forEach(updateElement);
+});
+
+//coding examples hover explanation
+
+// const attrName = document.querySelectorAll(".token");
+// const definitions = document.getElementById("definitions");
+
+// console.log(attrName);
+// const hljsTag = document.getElementsByClassName("hljs-tag");
+// const hljsName = (document.getElementsByClassName("hljs-name"));
+// const hljsAttr = document.getElementsByClassName("hljs-attr");
+// const hljsString = document.getElementsByClassName("hljs-string");
+
+// console.log(hljsName[0]);
+// console.log(hljsName);
+// attrName.addEventListener("mouseenter", () => {
+//   console.log("hovered");
+//   if (attrName.textContent == "class") {
+//     definitions.textContent = "explanation";
+//     console.log("correct hover");
+//   } else {
+//     console.log("Oopsie");
+//   }
+// });
+
+const definitions = document.getElementsByClassName("definitions");
+const codeContainer = document.getElementsByClassName("code-cont");
+const def1 = definitions[0];
+const def2 = definitions[1];
+const def3 = definitions[2];
+
+function goHoverDefinitions(codeElement) {
+  // const properties = codeElement.getElementsByClassName("property");
+  // const prismTag = codeElement.getElementsByClassName("tag");
+  const tokens = codeElement.getElementsByClassName("token");
+  
+
+
+  for (const token of tokens) {
+    token.addEventListener("mouseenter", (e) => {
+
+      if ( e.target.classList.contains("attr-name") ) {
+        if ( e.target.textContent === "class" ){
+          def1.textContent = "A class attribute";
+        } else if ( e.target.textContent === "href" ) {
+          def1.textContent = "An href attribute";
+        }
+
+      } else if ( e.target.classList.contains("attr-value") ) {
+      def1.textContent = "The value or name of the attribute that I set";
+      }
+    });
+    token.addEventListener("mouseleave", (e) => {
+      def1.textContent = "Hover over the code to learn more";
+    });
+  }
+}
+// function goHoverDefintions(codeEl) {
+//   const definition = codeEl
+//     .closest(".code-cont")
+//     .querySelector(".defintions");
+
+//   codeEl.addEventListener("mouseenter", (e) => {
+//     const target = e.target;
+
+//     if (!target.className.startsWith("token")) return;
+
+//     if (target.classList.contains("property")) {
+//       definition.textContent = "Tag name";
+//     } else if (target.classList.contains("hljs-attr")){
+//       definition.textContent = "a property name";
+//       console.log("codeeeee23");
+//     } 
+
+
+//   });
+
+//   codeEl.addEventListener("mouseout", () => {
+//     definition.textContent = "Hover over the code to learn more"
+//   });
+//   console.log(definition);
+
+// }
+
+// hljs.addPlugin({
+//   "after:highlightElement": ({ el }) => {
+//     goHoverDefinitions(el);
+//   }
+// });
+// hljs.highlightAll();
+Prism.hooks.add("complete", function (env) {
+  goHoverDefinitions(env.element);
 });

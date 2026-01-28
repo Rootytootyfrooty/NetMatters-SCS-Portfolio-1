@@ -12,6 +12,7 @@
         }
     }
 }
+//information before form starts
 .info {
     margin-bottom: 20px;
 }
@@ -134,6 +135,7 @@
 }
 
 // form html before
+
 // <div class="formcont">
 //                 <form action="#" method="post">
 //                     <div class="form">
@@ -157,7 +159,8 @@
 //                 </form>
 //             </div>
 
-//new form with js
+
+//new form with js, error and success styling for form input fields
 
 .input-control.success input, 
 .input-control.success textarea {
@@ -172,7 +175,3 @@
 .error textarea::placeholder {
     color: rgba(139, 0, 0, 0.8);
 }
-
-// input-area .error {
-//     color: darkred;
-// }
