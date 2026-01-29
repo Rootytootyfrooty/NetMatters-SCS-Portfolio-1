@@ -14,10 +14,15 @@
     flex-direction: column;
     align-items: center;
 }
+
+#cont-cont-1 pre {
+    position: fixed;
+    overflow-x: scroll;
+}
 //css for prism.js
 .code-cont {
     text-align: left;
-    overflow-x: scroll;
+    // overflow-x: scroll;
     max-width: 315px;
     max-height: 700px;
     @include sm {
@@ -41,11 +46,20 @@
     padding: 10px;
     max-width: 600px;
     margin: 0 auto;
+    overflow: clip;
     @include md {
         width: 550px;
     }
+    @include dm {
+        color: $c-burger;
+        border: 1px $c-burger solid;
+    }
 }
-
+#definitions1,
+#definitions2,
+#definitions3 {
+    overflow-x: clip;
+}
 //colour for the sass map
 #colours {
     position: relative;

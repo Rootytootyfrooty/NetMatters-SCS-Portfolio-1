@@ -29,7 +29,9 @@ $screen-xl: 1200px;
 //dark mode
 @mixin dm { 
     @media (prefers-color-scheme: dark) {
+      body {
         background-color: $c-burger-bg;
+      }
         p, h1, h2, h3, img, a {
         color: $c-burger;
             .btn:hover {
@@ -37,6 +39,9 @@ $screen-xl: 1200px;
             }
         }
         @content;
+        #sidebar {
+          background-color: $c-sidebar-dk;
+        }
     }
 }
 

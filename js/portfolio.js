@@ -313,8 +313,12 @@ window.addEventListener("load", () => {
 //coding examples hover explanation
 // hovering over certain elements to change the "hover to learn more" text with explanations/defintions
 
+// const codeContainer = document.getElementsByClassName("code-cont");
 const definitions = document.getElementsByClassName("definitions");
-const codeContainer = document.getElementsByClassName("code-cont");
+const codeCont1 = document.getElementById("code-cont-1");
+const codeCont2 = document.getElementById("code-cont-2");
+const codeCont3 = document.getElementById("code-cont-3");
+
 const def1 = definitions[0];
 const def2 = definitions[1];
 const def3 = definitions[2];
@@ -322,89 +326,308 @@ const def3 = definitions[2];
 // I have to make it a function that runs after the prism.js file has done its thing
 //this whole thing is very messy but it works so I'm leaving it for now...
 //oops doesn't work on touchscreen, got to work on that next.
-function goHoverDefinitions(codeElement) {
-  const tokens = codeElement.getElementsByClassName("token");
-  
-
+function goHoverDefinitions(codeElement, defElement) {
   //prism.js adds spans with different classes depending on the element/tag/punctuation
   //and every one has the class 'token' first
-  for (const token of tokens) {
-    token.addEventListener("mouseenter", (e) => {
-      if ( e.target.classList.contains("attr-name") ) {
-        if ( e.target.textContent === "class" ){
-          def1.textContent = "An attribute used to assign reusable identifiers to elements";
-          e.target.classList.add("token-hl");     
-        } else if ( e.target.textContent === "href" ) {
-          def1.textContent = "An attribute used to point to a specific URL";
-          e.target.classList.add("token-hl");
-        }
-      } if ( e.target.classList.contains("attr-value") ) {
-      def1.textContent = "The value or name of the attribute that I set";
-      e.target.classList.add("token-hl");
-      } if ( e.target.classList.contains("tag") ) {
-          if ( e.target.textContent === "<span" || e.target.textContent === "</span" ) { 
-        def1.textContent = "An inline-container used to wrap pieces of text and content";
-        e.target.classList.add("token-hl");
-        } if ( e.target.textContent === "<div" || e.target.textContent === "</div" ) { 
-        def1.textContent = "A generic block-level container used to group elements";
-        e.target.classList.add("token-hl");
-        }
-    }
-    });
-    token.addEventListener("mouseleave", (e) => {
-      leaveTimer = setTimeout(() => {
-      def1.textContent = "Hover over the code to learn more";
-      token.classList.remove("token-hl");
-      }, 5000);
-    });
-  }
-  const codeContTokens2 = document.querySelectorAll("#code-cont-2 .token");
-  const codeContTokens3 = document.querySelectorAll("#code-cont-3 .token");
+  const tokens = codeElement.getElementsByClassName("token");
+  
+  //for touchscreen
+  let leaveTimer = null;
+  let activeToken = null;
+  function handleEnter(token, text) {
+    clearTimeout(leaveTimer);
 
-  for (const token of codeContTokens2) {
-    token.addEventListener("mouseenter", (e) => {
-      if (e.target.classList.contains("variable")) {
-        def2.textContent = "The variable name for the sass map";
-        e.target.classList.add("token-hl");
-      } else if (e.target.classList.contains("property")) {
-        def2.textContent = "The key part of the key value pairs";
-        e.target.classList.add("token-hl");
+      if (activeToken && activeToken !== token) {
+        activeToken.classList.remove("token-hl");
+      }
+
+      token.classList.add("token-hl");
+      activeToken = token;
+      defElement.textContent = text;
+    }
+    function scheduleDeactivate(token) {
+      leaveTimer = setTimeout(() => {
+        if (activeToken === token) {
+          token.classList.remove("token-hl");
+          activeToken = null;
+          defElement.textContent = "Hover or tap on code to learn more";
+        }
+      }, 5000);
+    }
+
+    for (const token of tokens) {
+      token.addEventListener("mouseenter", () => {
+        handleToken(token);
+      });
+      token.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        handleToken(token);
+        scheduleDeactivate(token);
+      });
+      token.addEventListener("mouseleave", () => {
+        scheduleDeactivate(token);
+      });
+    }
+    document.addEventListener("pointerdown", (e) => {
+      if (activeToken && !activeToken.contains(e.target)) {
+        activeToken.classList.remove("token-hl");
+        activeToken = null;
+        clearTimeout(leaveTimer);
+        def1.textContent = "Hover or tap on code to learn more";
+        def2.textContent = "Hover or tap on code to learn more";
+        def3.textContent = "Hover or tap on code to learn more";
       }
     });
-    token.addEventListener("mouseleave", (e) => {
-      leaveTimer = setTimeout(() => {
-      def2.textContent = "Hover over the code to learn more";
-      token.classList.remove("token-hl");
-      }, 5000);
-    });
-  }
-  for (const token of codeContTokens3) {
-    token.addEventListener("mouseenter", (e) => {
-      if (e.target.classList.contains("variable")) {
-        def3.textContent = "A named variable that stores a reusable value, defined elsewhere";
-        e.target.classList.add("token-hl");
-      } else if (e.target.classList.contains("property")) {
-        def3.textContent = "The property that is being styled";
-        e.target.classList.add("token-hl");
-      } else if (e.target.classList.contains("selector")) {
-        def3.textContent = "The selector used to target the correct elements";
-        e.target.classList.add("token-hl");
-      } else if (e.target.classList.contains("keyword")) {
-        def3.textContent = "The @each rule which cycles through each value pair in the sass map";
-        e.target.classList.add("token-hl");
+     
+      function handleToken(token) {
+    if (token.classList.contains("attr-name")) {
+      if (token.textContent === "class") {
+        handleEnter(token, "An attribute used to assign reusable identifiers to elements");
+      } else if (token.textContent === "href") {
+        handleEnter(token, "An attribute used to point to a specific URL");
       }
-    });
-    token.addEventListener("mouseleave", (e) => {
-      leaveTimer = setTimeout(() => {
-      def3.textContent = "Hover over the code to learn more";
-      token.classList.remove("token-hl");
-      }, 5000);
-    });
+    } else if (token.classList.contains("attr-value")) {
+      handleEnter(token, "The value or name of the attribute that I set");
+    } else if (token.classList.contains("tag")) {
+      if (token.textContent.startsWith("<span") || token.textContent.startsWith("</span")) {
+        handleEnter(token, "An inline container used to wrap pieces of text and content");
+      } else if (token.textContent.startsWith("<div") || token.textContent.startsWith("</div")) {
+        handleEnter(token, "A generic block-level container used to group elements");
+      }
+    } else if (token.classList.contains("variable")) {
+      if (token.closest("code-cont-2")) {
+        handleEnter(token, "The variable name for the sass map");
+      } else {
+        handleEnter(token, "A named variable that stores a reusable value, defined elsewhere");
+      }
+    } else if (token.classList.contains("property")) {
+      if (token.closest("#code-cont-2")) {
+        if (token.textContent.includes("e")) {
+          handleEnter(token, "The key part of the key value pairs");
+        } else {
+          handleEnter(token, "The variable name for the sass map");
+        }
+      } else {
+        handleEnter(token, "The property that is being styled");
+      }
+    } else if (token.classList.contains("selector")) {
+      handleEnter(token, "The selector used to target the correct elements");
+    } else if (token.classList.contains("keyword")) {
+      handleEnter(token, "The @each rule which cycles through each value pair in the sass map");
+    }
   }
 }
 
-
 // run the hover-for-the-definitions function after prism.js has injected the markup that makes the syntax highlighter work
 Prism.hooks.add("complete", function (env) {
-  goHoverDefinitions(env.element);
+  goHoverDefinitions(codeCont1, def1);
+  goHoverDefinitions(codeCont2, def2);
+  goHoverDefinitions(codeCont3, def3);
 });
+// if (e.target.classList.contains("variable")) {
+//         def3.textContent = "A named variable that stores a reusable value, defined elsewhere";
+//         e.target.classList.add("token-hl");
+//       } 
+//  if (token.classList.contains("property")) {
+//   if (token is inside codeCont2) {
+//       handleEnter(token, "The key part of the key value pairs");
+//     } else {
+//       handleEnter(token, "The property that is being styled");
+//     }
+//   }
+
+ //   if ( e.target.classList.contains("attr-name") ) {
+      //     if ( e.target.textContent === "class" ){
+      //       def1.textContent = "An attribute used to assign reusable identifiers to elements";
+      //       e.target.classList.add("token-hl");     
+      //     } else if ( e.target.textContent === "href" ) {
+      //       def1.textContent = "An attribute used to point to a specific URL";
+      //       e.target.classList.add("token-hl");
+      //     }
+      //   } if ( e.target.classList.contains("attr-value") ) {
+      //   def1.textContent = "The value or name of the attribute that I set";
+      //   e.target.classList.add("token-hl");
+      //   } if ( e.target.classList.contains("tag") ) {
+      //       if ( e.target.textContent === "<span" || e.target.textContent === "</span" ) { 
+      //     def1.textContent = "An inline-container used to wrap pieces of text and content";
+      //     e.target.classList.add("token-hl");
+      //     } if ( e.target.textContent === "<div" || e.target.textContent === "</div" ) { 
+      //     def1.textContent = "A generic block-level container used to group elements";
+      //     e.target.classList.add("token-hl");
+      //     }
+      // }
+
+//second try
+
+  // for (const token of tokens) {
+  //   token.addEventListener("mouseenter", (e) => {
+  //     handleEnter1(e, token);
+  //   });
+  //   token.addEventListener("pointerdown", (e) => {
+  //     e.preventDefault();
+  //     handleEnter1(e, token);
+  //   });
+  //   token.addEventListener("mouseleave", () => {
+  //     leaveTimer = setTimeout(() => {
+  //       def1.textContent = "Hover or tap on code to learn more";
+  //       token.classList.remove("token-hl");
+  //     }, 5000);
+  //   });
+  // }
+  // const codeContTokens2 = document.querySelectorAll("#code-cont-2 .token");
+  // const codeContTokens3 = document.querySelectorAll("#code-cont-3 .token");
+  // function handleEnter2(e, token) {
+  // clearTimeout(leaveTimer);
+  // activeToken = token;
+  //   if (e.target.classList.contains("variable")) {
+  //     def2.textContent = "The variable name for the sass map";
+  //     e.target.classList.add("token-hl");
+  //   } else if (e.target.classList.contains("property")) {
+  //     def2.textContent = "The key part of the key value pairs";
+  //     e.target.classList.add("token-hl");
+  //   }
+  // }
+  // for (const token of codeContTokens2) {
+  //   token.addEventListener("mouseenter", (e) => {
+  //     handleEnter2(e, token);
+  //   });
+  //   token.addEventListener("pointerdown", (e) => {
+  //     e.preventDefault();
+  //     handleEnter2(e, token);
+  //   });
+  //   token.addEventListener("mouseleave", () => {
+  //     leaveTimer = setTimeout(() => {
+  //       def1.textContent = "Hover or tap on code to learn more";
+  //       token.classList.remove("token-hl");
+  //     }, 5000);
+  //   });
+  // }
+  // document.addEventListener("pointerdown", (e) => {
+  //   if (activeToken && !activeToken.contains(e.target)) {
+  //     activeToken.classList.remove("token-hl");
+  //     activeToken = null;
+  //     clearTimeout(leaveTimer);
+  //     def1.textContent = "Hover or tap on code to learn more";
+  //     def2.textContent = "Hover or tap on code to learn more";
+  //     def3.textContent = "Hover or tap on code to learn more";
+  //   }
+  // });
+
+  // function handleEnter3(e, token) {
+  //   clearTimeout(leaveTimer);
+  //   activeToken = token;
+  //     if (e.target.classList.contains("variable")) {
+  //       def3.textContent = "A named variable that stores a reusable value, defined elsewhere";
+  //       e.target.classList.add("token-hl");
+  //     } else if (e.target.classList.contains("property")) {
+  //       def3.textContent = "The property that is being styled";
+  //       e.target.classList.add("token-hl");
+  //     } else if (e.target.classList.contains("selector")) {
+  //       def3.textContent = "The selector used to target the correct elements";
+  //       e.target.classList.add("token-hl");
+  //     } else if (e.target.classList.contains("keyword")) {
+  //       def3.textContent = "The @each rule which cycles through each value pair in the sass map";
+  //       e.target.classList.add("token-hl");
+  //     }
+  //   }
+  // for (const token of codeContTokens3) {
+  //   token.addEventListener("mouseenter", (e) => {
+  //     handleEnter3(e, token);
+  //   });
+  //   token.addEventListener("pointerdown", (e) => {
+  //     e.preventDefault();
+  //     handleEnter3(e, token);
+  //   });
+  //   token.addEventListener("mouseleave", () => {
+  //     leaveTimer = setTimeout(() => {
+  //       def1.textContent = "Hover or tap on code to learn more";
+  //       token.classList.remove("token-hl");
+  //     }, 5000);
+  //   });
+  // }
+
+// function goHoverDefinitions(codeElement) {
+//   //prism.js adds spans with different classes depending on the element/tag/punctuation
+//   //and every one has the class 'token' first
+//   const tokens = codeElement.getElementsByClassName("token");
+  
+//   //for touchscreen
+  
+  
+//   for (const token of tokens) {
+//     token.addEventListener("mouseenter", (e) => {
+//       if ( e.target.classList.contains("attr-name") ) {
+//         if ( e.target.textContent === "class" ){
+//           def1.textContent = "An attribute used to assign reusable identifiers to elements";
+//           e.target.classList.add("token-hl");     
+//         } else if ( e.target.textContent === "href" ) {
+//           def1.textContent = "An attribute used to point to a specific URL";
+//           e.target.classList.add("token-hl");
+//         }
+//       } if ( e.target.classList.contains("attr-value") ) {
+//       def1.textContent = "The value or name of the attribute that I set";
+//       e.target.classList.add("token-hl");
+//       } if ( e.target.classList.contains("tag") ) {
+//           if ( e.target.textContent === "<span" || e.target.textContent === "</span" ) { 
+//         def1.textContent = "An inline-container used to wrap pieces of text and content";
+//         e.target.classList.add("token-hl");
+//         } if ( e.target.textContent === "<div" || e.target.textContent === "</div" ) { 
+//         def1.textContent = "A generic block-level container used to group elements";
+//         e.target.classList.add("token-hl");
+//         }
+//     }
+//     });
+//     token.addEventListener("mouseleave", (e) => {
+//       leaveTimer = setTimeout(() => {
+//       def1.textContent = "Hover over the code to learn more";
+//       token.classList.remove("token-hl");
+//       }, 5000);
+//     });
+//   }
+
+//   const codeContTokens2 = document.querySelectorAll("#code-cont-2 .token");
+//   const codeContTokens3 = document.querySelectorAll("#code-cont-3 .token");
+
+//   for (const token of codeContTokens2) {
+//     token.addEventListener("mouseenter", (e) => {
+//       if (e.target.classList.contains("variable")) {
+//         def2.textContent = "The variable name for the sass map";
+//         e.target.classList.add("token-hl");
+//       } else if (e.target.classList.contains("property")) {
+//         def2.textContent = "The key part of the key value pairs";
+//         e.target.classList.add("token-hl");
+//       }
+//     });
+//     token.addEventListener("mouseleave", (e) => {
+//       leaveTimer = setTimeout(() => {
+//       def2.textContent = "Hover over the code to learn more";
+//       token.classList.remove("token-hl");
+//       }, 5000);
+//     });
+//   }
+//   for (const token of codeContTokens3) {
+//     token.addEventListener("mouseenter", (e) => {
+//       if (e.target.classList.contains("variable")) {
+//         def3.textContent = "A named variable that stores a reusable value, defined elsewhere";
+//         e.target.classList.add("token-hl");
+//       } else if (e.target.classList.contains("property")) {
+//         def3.textContent = "The property that is being styled";
+//         e.target.classList.add("token-hl");
+//       } else if (e.target.classList.contains("selector")) {
+//         def3.textContent = "The selector used to target the correct elements";
+//         e.target.classList.add("token-hl");
+//       } else if (e.target.classList.contains("keyword")) {
+//         def3.textContent = "The @each rule which cycles through each value pair in the sass map";
+//         e.target.classList.add("token-hl");
+//       }
+//     });
+//     token.addEventListener("mouseleave", (e) => {
+//       leaveTimer = setTimeout(() => {
+//       def3.textContent = "Hover over the code to learn more";
+//       token.classList.remove("token-hl");
+//       }, 5000);
+//     });
+//   }
+// }
+
+
