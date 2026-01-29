@@ -19,11 +19,14 @@
     text-align: left;
     overflow-x: scroll;
     max-width: 315px;
-    max-height: 550px;
+    max-height: 700px;
     @include sm {
         max-width: 400px;
     }
     @include md {
+        max-width: 550px;
+    }
+    @include lg {
         max-width: 640px;
     }
 }
@@ -36,7 +39,11 @@
     border: 1px black solid;
     border-radius: 10px;
     padding: 10px;
-    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    @include md {
+        width: 550px;
+    }
 }
 
 //colour for the sass map
@@ -65,4 +72,9 @@
         #ce4125 87.5%, #ce4125 100%
     );
     z-index: 55;
+}
+
+//background highlight?
+.token-hl {
+    background-color: lightyellow;
 }

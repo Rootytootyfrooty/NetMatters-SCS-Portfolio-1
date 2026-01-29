@@ -309,28 +309,9 @@ window.addEventListener("load", () => {
   slideInners.forEach(updateElement);
 });
 
+
 //coding examples hover explanation
-
-// const attrName = document.querySelectorAll(".token");
-// const definitions = document.getElementById("definitions");
-
-// console.log(attrName);
-// const hljsTag = document.getElementsByClassName("hljs-tag");
-// const hljsName = (document.getElementsByClassName("hljs-name"));
-// const hljsAttr = document.getElementsByClassName("hljs-attr");
-// const hljsString = document.getElementsByClassName("hljs-string");
-
-// console.log(hljsName[0]);
-// console.log(hljsName);
-// attrName.addEventListener("mouseenter", () => {
-//   console.log("hovered");
-//   if (attrName.textContent == "class") {
-//     definitions.textContent = "explanation";
-//     console.log("correct hover");
-//   } else {
-//     console.log("Oopsie");
-//   }
-// });
+// hovering over certain elements to change the "hover to learn more" text with explanations/defintions
 
 const definitions = document.getElementsByClassName("definitions");
 const codeContainer = document.getElementsByClassName("code-cont");
@@ -338,65 +319,92 @@ const def1 = definitions[0];
 const def2 = definitions[1];
 const def3 = definitions[2];
 
+// I have to make it a function that runs after the prism.js file has done its thing
+//this whole thing is very messy but it works so I'm leaving it for now...
+//oops doesn't work on touchscreen, got to work on that next.
 function goHoverDefinitions(codeElement) {
-  // const properties = codeElement.getElementsByClassName("property");
-  // const prismTag = codeElement.getElementsByClassName("tag");
   const tokens = codeElement.getElementsByClassName("token");
   
 
-
+  //prism.js adds spans with different classes depending on the element/tag/punctuation
+  //and every one has the class 'token' first
   for (const token of tokens) {
     token.addEventListener("mouseenter", (e) => {
-
       if ( e.target.classList.contains("attr-name") ) {
         if ( e.target.textContent === "class" ){
-          def1.textContent = "A class attribute";
+          def1.textContent = "An attribute used to assign reusable identifiers to elements";
+          e.target.classList.add("token-hl");     
         } else if ( e.target.textContent === "href" ) {
-          def1.textContent = "An href attribute";
+          def1.textContent = "An attribute used to point to a specific URL";
+          e.target.classList.add("token-hl");
         }
-
-      } else if ( e.target.classList.contains("attr-value") ) {
+      } if ( e.target.classList.contains("attr-value") ) {
       def1.textContent = "The value or name of the attribute that I set";
+      e.target.classList.add("token-hl");
+      } if ( e.target.classList.contains("tag") ) {
+          if ( e.target.textContent === "<span" || e.target.textContent === "</span" ) { 
+        def1.textContent = "An inline-container used to wrap pieces of text and content";
+        e.target.classList.add("token-hl");
+        } if ( e.target.textContent === "<div" || e.target.textContent === "</div" ) { 
+        def1.textContent = "A generic block-level container used to group elements";
+        e.target.classList.add("token-hl");
+        }
+    }
+    });
+    token.addEventListener("mouseleave", (e) => {
+      leaveTimer = setTimeout(() => {
+      def1.textContent = "Hover over the code to learn more";
+      token.classList.remove("token-hl");
+      }, 5000);
+    });
+  }
+  const codeContTokens2 = document.querySelectorAll("#code-cont-2 .token");
+  const codeContTokens3 = document.querySelectorAll("#code-cont-3 .token");
+
+  for (const token of codeContTokens2) {
+    token.addEventListener("mouseenter", (e) => {
+      if (e.target.classList.contains("variable")) {
+        def2.textContent = "The variable name for the sass map";
+        e.target.classList.add("token-hl");
+      } else if (e.target.classList.contains("property")) {
+        def2.textContent = "The key part of the key value pairs";
+        e.target.classList.add("token-hl");
       }
     });
     token.addEventListener("mouseleave", (e) => {
-      def1.textContent = "Hover over the code to learn more";
+      leaveTimer = setTimeout(() => {
+      def2.textContent = "Hover over the code to learn more";
+      token.classList.remove("token-hl");
+      }, 5000);
+    });
+  }
+  for (const token of codeContTokens3) {
+    token.addEventListener("mouseenter", (e) => {
+      if (e.target.classList.contains("variable")) {
+        def3.textContent = "A named variable that stores a reusable value, defined elsewhere";
+        e.target.classList.add("token-hl");
+      } else if (e.target.classList.contains("property")) {
+        def3.textContent = "The property that is being styled";
+        e.target.classList.add("token-hl");
+      } else if (e.target.classList.contains("selector")) {
+        def3.textContent = "The selector used to target the correct elements";
+        e.target.classList.add("token-hl");
+      } else if (e.target.classList.contains("keyword")) {
+        def3.textContent = "The @each rule which cycles through each value pair in the sass map";
+        e.target.classList.add("token-hl");
+      }
+    });
+    token.addEventListener("mouseleave", (e) => {
+      leaveTimer = setTimeout(() => {
+      def3.textContent = "Hover over the code to learn more";
+      token.classList.remove("token-hl");
+      }, 5000);
     });
   }
 }
-// function goHoverDefintions(codeEl) {
-//   const definition = codeEl
-//     .closest(".code-cont")
-//     .querySelector(".defintions");
-
-//   codeEl.addEventListener("mouseenter", (e) => {
-//     const target = e.target;
-
-//     if (!target.className.startsWith("token")) return;
-
-//     if (target.classList.contains("property")) {
-//       definition.textContent = "Tag name";
-//     } else if (target.classList.contains("hljs-attr")){
-//       definition.textContent = "a property name";
-//       console.log("codeeeee23");
-//     } 
 
 
-//   });
-
-//   codeEl.addEventListener("mouseout", () => {
-//     definition.textContent = "Hover over the code to learn more"
-//   });
-//   console.log(definition);
-
-// }
-
-// hljs.addPlugin({
-//   "after:highlightElement": ({ el }) => {
-//     goHoverDefinitions(el);
-//   }
-// });
-// hljs.highlightAll();
+// run the hover-for-the-definitions function after prism.js has injected the markup that makes the syntax highlighter work
 Prism.hooks.add("complete", function (env) {
   goHoverDefinitions(env.element);
 });

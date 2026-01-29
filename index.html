@@ -220,9 +220,9 @@
                 <h2>Coding Examples</h2>
                 <div class="example-1">
                     <h3>Using SCSS to control colours</h3>
-                    <p>First I write the basic structure of the elements in HTML that I want to style</p>
-                    <div class="code-cont">
-                        <div id="definitions1" class="definitions">Hover over the code to learn more</div>
+                    <p>First I write the basic structure of the elements in HTML that I want to style:</p>
+                    <div class="code-cont" id="code-cont-1">
+                        
                             <pre><code id="cb-1" class="language-html">&lt;div class="btn-big"&gt;
     &lt;span class="btn-logo btn-logo--dev-grey"&gt;
         &lt;svg class="icon"&gt; &lt;use href="svg/icon-laptop"&gt; &lt;/use&gt; &lt;/svg&gt;
@@ -236,10 +236,10 @@
     &lt;/span&gt;
     &lt;h2&gt;IT Support&lt;/h2&gt;
     &lt;span class="btn-sm btn-sm--support-blue"&gt;Read More&lt;/span&gt;
-&lt;/div&gt;</code></pre></div>
-                        <p>I make a sass map for the respective button colours.</p>
-                        <div class="code-cont colours">
-                            <div id="definitions2" class="definitions">Hover over the code to learn more</div>
+&lt;/div&gt;</code></pre><div id="definitions1" class="definitions">Hover over the code to learn more &#8593;</div></div>
+                        <p>I then make a sass map for the respective button colours:</p>
+                        <div class="code-cont" id="code-cont-2">
+                            
                             <pre><code id="cb-2" class="language-scss">$btn-colors: (
   dev-yellow:        #f7b322,
   dev-grey:          #67809f,
@@ -251,10 +251,11 @@
   training-orange:   #ce4125
 );</code></pre>
                             <span id="colours"></span>
+                            <div id="definitions2" class="definitions">Hover over the code to learn more &#8593;</div>
                         </div>
-                        <p>Then I make an @each rule, targeting the variable pairs in the colour map to assign set colours to each button and style them and their hover effects with a short amount of code.</p>
-                        <div class="code-cont">
-                            <div id="definitions3" class="definitions">Hover over the code to learn more</div>
+                        <p>Finally I make an @each rule, targeting the variable pairs in the colour map to assign set colours to each button and style them and their hover effects with a short amount of code:</p>
+                        <div class="code-cont" id="code-cont-3">
+                            
                             <pre><code id="cb-3" class="language-scss">.btn-logo {
 @each $name, $color in $btn-colors {
   &amp;--#{$name} {
@@ -269,12 +270,12 @@
     &amp; svg {  
       justify-self: center;
       align-self: center;
-      height: rem(32);
+      height: 32px;
       width: 32px;
       }
     }
   }
-}</code></pre></div>
+}</code></pre><div id="definitions3" class="definitions">Hover over the code to learn more &#8593;</div></div>
                 </div>
             </div>
         </section>
