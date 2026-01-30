@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animateText();
   });
 });
+
 //burger button functionality - new/experiment
 const burgerBtn = document.getElementById("burger");
 const sidebar = document.getElementById("sidebar");
@@ -122,7 +123,7 @@ const setError = (field, message) => {
   if (!control) return;
 
   field.placeholder = message;
-
+  // I have data no clear on the message box so if it's over 1,000 chars it won't reset when error
   if (!field.hasAttribute("data-no-clear") && field.type !== "email") {
     field.value = "";
   }
@@ -146,7 +147,7 @@ const isValidEmail = email => {
 }
 
 const emailValue = emailIn.value.trim();
-
+//trim the data so I don't have to deal with trailing spaces
 const validateInputs = () => {
   const firstNameValue = firstNameIn.value.trim();
   const lastNameValue = lastNameIn.value.trim();
@@ -168,7 +169,7 @@ const validateInputs = () => {
   } else if (!isValidEmail(emailIn.value.trim())) {
     setError(emailIn, "Please provide a valid email address");
   } else if (emailIn.value.trim() === "kathryn.root@netmatters-scs.com") {
-    setError(emailIn, "You're meant to use your own email");
+    setError(emailIn, "You're meant to use your own email"); //I just thought this was funny
   } else {
     setSuccess(emailIn);
   }
@@ -274,11 +275,11 @@ const slideInners = Array.from(
 const startScroll = slideInner.offsetTop - window.innerHeight;
 const endScroll = startScroll + 500;
 
-
+// so the scroll position is always between 0 and 1 so percentages are easy
 function scrollStop(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
-
+// updates progress based on scrollY position from top of section (-window height)
 function updateElement(el) {
   const rect = el.getBoundingClientRect();
   const scrollY = window.scrollY;
@@ -304,6 +305,7 @@ function onScroll() {
     ticking = true;
   }
 }
+//triggers update every time a scroll event happens
 window.addEventListener("scroll", onScroll);
 window.addEventListener("load", () => {
   slideInners.forEach(updateElement);
@@ -313,7 +315,6 @@ window.addEventListener("load", () => {
 //coding examples hover explanation
 // hovering over certain elements to change the "hover to learn more" text with explanations/defintions
 
-// const codeContainer = document.getElementsByClassName("code-cont");
 const definitions = document.getElementsByClassName("definitions");
 const codeCont1 = document.getElementById("code-cont-1");
 const codeCont2 = document.getElementById("code-cont-2");
@@ -325,7 +326,7 @@ const def3 = definitions[2];
 
 // I have to make it a function that runs after the prism.js file has done its thing
 //this whole thing is very messy but it works so I'm leaving it for now...
-//oops doesn't work on touchscreen, got to work on that next.
+// now works on touchscreen!
 function goHoverDefinitions(codeElement, defElement) {
   //prism.js adds spans with different classes depending on the element/tag/punctuation
   //and every one has the class 'token' first
@@ -368,6 +369,7 @@ function goHoverDefinitions(codeElement, defElement) {
         scheduleDeactivate(token);
       });
     }
+    //click anywhere else on the page and it removes the highlight/defintions of the previous selection (or wait 5000ms)
     document.addEventListener("pointerdown", (e) => {
       if (activeToken && !activeToken.contains(e.target)) {
         activeToken.classList.remove("token-hl");
@@ -378,7 +380,10 @@ function goHoverDefinitions(codeElement, defElement) {
         def3.textContent = "Hover or tap on code to learn more";
       }
     });
-     
+      // very janky if statements, I'm sure this could be improved.
+      // prism.js results in not as specific names as I would like
+      // e.g. div and span are both in spans with the classes "token tag".
+      // so I have to differentiate using their textContent
       function handleToken(token) {
     if (token.classList.contains("attr-name")) {
       if (token.textContent === "class") {
@@ -419,11 +424,14 @@ function goHoverDefinitions(codeElement, defElement) {
 }
 
 // run the hover-for-the-definitions function after prism.js has injected the markup that makes the syntax highlighter work
+// or I can't target the span classes that don't exist yet
 Prism.hooks.add("complete", function (env) {
   goHoverDefinitions(codeCont1, def1);
   goHoverDefinitions(codeCont2, def2);
   goHoverDefinitions(codeCont3, def3);
 });
+// lots of failed attempts to get the hover definitions working below.
+
 // if (e.target.classList.contains("variable")) {
 //         def3.textContent = "A named variable that stores a reusable value, defined elsewhere";
 //         e.target.classList.add("token-hl");

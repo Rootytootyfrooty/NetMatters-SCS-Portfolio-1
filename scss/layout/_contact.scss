@@ -36,6 +36,9 @@
             box-shadow: none;
             font-family: "Plus Jakarta Sans", sans-serif;
             width: 100%;
+            @include dm {
+                color: black;
+            }
             &:focus-visible {
                 outline-color: rgba($c-sidebar, 0.5);
                 outline-style: inset;
@@ -45,7 +48,7 @@
                 }
             }
                 @include dm {
-                    color: $c-burger;
+                    color: $c-burger-bg;
                 }
         }
     }
@@ -68,7 +71,7 @@
             }
         }
             @include dm {
-                color: $c-burger;
+                color: $c-burger-bg;
             }
     }
 }
@@ -170,6 +173,9 @@
     border-color: rgb(255, 0, 0);
     background-color: rgba(255, 0, 0, 0.1);
     color: darkred;
+    @include dm {
+        background-color: rgb(197, 91, 91);
+    }
 }
 .error input::placeholder, 
 .error textarea::placeholder {
