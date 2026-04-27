@@ -24,7 +24,7 @@
     text-align: left;
     // overflow-x: scroll;
     max-width: 315px;
-    max-height: 700px;
+    //max-height: 700px;
     @include sm {
         max-width: 400px;
     }
@@ -33,6 +33,9 @@
     }
     @include lg {
         max-width: 640px;
+    }
+    @include xl {
+        max-width: 900px;
     }
 }
 .token:hover {
