@@ -4,17 +4,19 @@ main {
     @include md {
         padding-left: $sidebar-width;
     }
-    section {
-        @include ls {
-            padding-left: $sidebar-width;
-        }
+    @include ls {
+        padding-left: $sidebar-width;
     }
     
 }
 
 
-#about {
-    height: auto;
+#about, #scs, #examples {
+    min-height: 88vh;
+    text-align: center;
+    @include md {
+        padding-left: $sidebar-width;
+    }
     p {
         margin-bottom: 15px;
     }

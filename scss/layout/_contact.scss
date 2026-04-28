@@ -24,38 +24,17 @@
     #message {
         flex-grow: 2;
         font-family: "Plus Jakarta Sans", sans-serif;
-        max-height: 300px;
+        height: 150px;
+        
     }
-    .input-control {
-        input,
-        textarea {
-            height: 50px;
-            padding: 0 15px;
-            font-size: 20px;
-            color: darken($c-sidebar, 20%);
-            box-shadow: none;
-            font-family: "Plus Jakarta Sans", sans-serif;
-            width: 100%;
-            @include dm {
-                color: black;
-            }
-            &:focus-visible {
-                outline-color: rgba($c-sidebar, 0.5);
-                outline-style: inset;
-                box-shadow: 0px 2px 2px $c-sidebar;
-                @include dm {
-                        outline-color: $c-burger;
-                }
-            }
-                @include dm {
-                    color: $c-burger-bg;
-                }
-        }
-    }
+    
     #fmessage {
         height: 100%;
+        margin-bottom: 10px;
+        padding-top: 5px;
     }
     button {
+        margin-top: 30px;
         height: 50px;
         padding: 0 15px;
         font-size: 20px;
@@ -75,6 +54,31 @@
             }
     }
 }
+.default-input {
+    height: 50px;
+    padding: 0 15px;
+    margin: 5px 0;
+    font-size: 20px;
+    color: darken($c-sidebar, 20%);
+    box-shadow: none;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    width: 100%;
+    @include dm {
+        color: black;
+    }
+    &:focus-visible {
+        outline-color: rgba($c-sidebar, 0.5);
+        outline-style: inset;
+        box-shadow: 0px 2px 2px $c-sidebar;
+        @include dm {
+                outline-color: $c-burger;
+        }
+    }
+    @include dm {
+        color: $c-burger-bg;
+    }
+}
+
 @include lg {
     #contact {
         min-height: 90vh;
@@ -139,45 +143,91 @@
 
 // form html before
 
-// <div class="formcont">
-//                 <form action="#" method="post">
-//                     <div class="form">
-//                         <label for="ffname" class="hidden">First Name</label>
-//                         <input type="text" id="ffname" name="first-name" autocomplete="given-name" placeholder="First Name" />
-                        
-
-//                         <label for="flname" class="hidden">Last Name</label>
-//                         <input type="text" id="flname" name="last-name" autocomplete="family-name" placeholder="Last Name" />
-
-//                         <label for="femail" class="hidden">Email Address</label>
-//                         <input type="email" id="femail" name="email" autocomplete="email" placeholder="Email Address" />
-
-//                         <label for="fsubject" class="hidden">Subject</label>
-//                         <input type="text" id="fsubject" name="subject" placeholder="Subject..." />
-
-//                         <label for="fmessage" class="hidden">Message</label>
-//                         <textarea id="fmessage" name="message" rows="5" placeholder="Message..."></textarea>
-//                         <button type="submit">Submit</button>
-//                     </div>
-//                 </form>
-//             </div>
+// <form action="/#form" method="POST" id="form">
+//                         <div class="input-control" id="first-name">
+//                             <label for="ffname" class="hidden">First Name</label>
+//                             <input type="text" id="ffname" class="char-lim <?php if (isset($errors['firstName'])) : ?>
+//                                     <?= "error-php"?>
+//                                 <?php endif; ?>" name="first-name" autocomplete="given-name" placeholder="*First Name" data-placeholder="*First Name" value="<?= htmlspecialchars($firstName, ENT_QUOTES) ?>" />
+//                                 <?php if (isset($errors['firstName'])) : ?>
+//                                     <p class="error-msg"><?= $errors['firstName'] ?></p>
+//                                 <?php endif; ?>
+//                             </div>
+//                         <div class="input-control" id="last-name">
+//                             <label for="flname" class="hidden">Last Name</label>
+//                             <input type="text" id="flname" class="char-lim <?php if (isset($errors['lastName'])) : ?>
+//                                     <?= "error-php"?>
+//                                 <?php endif; ?>" name="last-name" autocomplete="family-name" placeholder="*Last Name" data-placeholder="*Last Name"  value="<?= htmlspecialchars($lastName, ENT_QUOTES) ?>" />
+//                             <!-- <div class="error"></div> -->
+//                         </div>
+//                         <div class="input-control" id="email">
+//                             <label for="femail" class="hidden">Email Address</label>
+//                             <input type="text" id="femail" class="<?php if (isset($errors['email'])) : ?>
+//                                     <?= "error-php"?>
+//                                 <?php endif; ?>" name="email" autocomplete="email" placeholder="*Email Address" data-placeholder="*Email Address"  value="<?= htmlspecialchars($email, ENT_QUOTES) ?>" />
+//                             <!-- <div class="error"></div> -->
+//                         </div>
+//                         <div class="input-control" id="subject">
+//                             <label for="fsubject" class="hidden">Subject</label>
+//                             <input type="text" id="fsubject" class="char-lim <?php if (isset($errors['subject'])) : ?>
+//                                     <?= "error-php"?>
+//                                 <?php endif; ?>" name="subject" placeholder="*Subject..." data-placeholder="*Subject..."  value="<?= htmlspecialchars($subject, ENT_QUOTES) ?>" />
+//                             <!-- <div class="error"></div> -->
+//                         </div>
+//                         <div class="input-control" id="message">
+//                             <label for="fmessage" class="hidden">Message</label>
+//                             <textarea id="fmessage" class="<?php if (isset($errors['message'])) : ?>
+//                                     <?= "error-php"?>
+//                                 <?php endif; ?>" name="message" rows="5" placeholder="*Message... Character Limit: 1,000" data-placeholder="*Message... Character Limit: 1,000" data-no-clear  value="<?= htmlspecialchars($message, ENT_QUOTES) ?>" ></textarea>
+//                             <!-- <div class="error"></div> -->
+//                         </div>
+                    //     <button type="submit">Submit</button>
+                    // </form>
+                    // <?php if (isset($_SESSION['MSG'])) : ?>
+                    // <div id="success-container">
+                    //     <div id="success-msg">
+                    //         <h3>Message Successfully Sent</h3>
+                    //         <p id="p">Redirecting...</p>
+                    //     </div>
+                    // </div>
+                    // <script>
+                    //     window.location.href = "/#contact";
+                    //     document.body.style.overflow = "hidden";
+                    //     setTimeout(function() {
+                    //         window.location.href = "/";
+                    //     }, 2000);
+                    // </script>
+                    // <?php 
+                    //     unset($_SESSION['MSG']);
+                    // endif ?>
 
 
 //new form with js, error and success styling for form input fields
 
-.input-control.success input, 
-.input-control.success textarea {
-    border-color: green;
+// .input-control.success input, 
+// .input-control.success textarea {
+//     border-color: green;
+// }
+// .error input, .error textarea {
+//     border-color: rgb(255, 0, 0);
+//     background-color: rgba(255, 0, 0, 0.1);
+//     color: darkred;
+//     @include dm {
+//         background-color: rgb(197, 91, 91);
+//     }
+// }
+// .error input::placeholder, 
+// .error textarea::placeholder {
+//     color: rgba(139, 0, 0, 0.8);
+// }
+.input-control label {
+    font-size: 20px;
 }
-.error input, .error textarea {
+.error-php {
     border-color: rgb(255, 0, 0);
     background-color: rgba(255, 0, 0, 0.1);
     color: darkred;
     @include dm {
         background-color: rgb(197, 91, 91);
     }
-}
-.error input::placeholder, 
-.error textarea::placeholder {
-    color: rgba(139, 0, 0, 0.8);
 }
