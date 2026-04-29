@@ -2,7 +2,13 @@
 <html lang="en">
     
     <?php require('partials/head.view.php') ?>
-
+    <?php 
+        $firstName = $_POST['first-name'] ?? '';
+        $number = $_POST['number'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $subject = $_POST['subject'] ?? '';
+        $message  = $_POST['message'] ?? ''; 
+    ?>
     <body id="top">
 
     <?php require('views/partials/svgs.php') ?>
@@ -124,15 +130,15 @@
                 <div class="formcont">
                     <form action="/#form" method="POST" id="form">
                         <div class="input-control" id="first-name">
-                            <label for="ffname"><strong>*</strong> First Name</label>
+                            <label for="ffname"><strong>*</strong> Name</label>
                             <input id="ffname" name="first-name" class="default-input <?= isset($errors['firstName']) ? 'error-php ' : '' ?>char-lim" 
                             value="<?= htmlspecialchars($firstName, ENT_QUOTES) ?>"></input>
                         </div>
 
-                        <div class="input-control" id="last-name">
-                            <label for="flname"><strong>*</strong> Last Name</label>
-                            <input id="flname" name="last-name" class="default-input <?= isset($errors['lastName']) ? 'error-php ' : '' ?>char-lim" 
-                            value="<?= htmlspecialchars($lastName, ENT_QUOTES) ?>"></input>
+                        <div class="input-control" id="number">
+                            <label for="flnumber"><strong>*</strong> Number</label>
+                            <input id="flnumber" name="number" class="default-input <?= isset($errors['number']) ? 'error-php ' : '' ?>char-lim" 
+                            value="<?= htmlspecialchars($number, ENT_QUOTES) ?>"></input>
                         </div>
 
                         <div class="input-control" id="email">
@@ -149,16 +155,16 @@
 
                         <div class="input-control" id="message">
                             <label for="fmessage"><strong>*</strong> Message</label>
-                            <textarea id="fmessage" name="message" class="default-input <?= isset($errors['message']) ? 'error-php ' : '' ?>char-lim" 
-                            value="<?= htmlspecialchars($message, ENT_QUOTES) ?>"></textarea>
+                            <textarea id="fmessage" name="message" class="default-input <?= isset($errors['message']) ? 'error-php ' : '' ?>" 
+                            data-no-clear ><?= htmlspecialchars($message, ENT_QUOTES) ?></textarea>
                         </div>
                         <button type="submit">Submit</button>
                     </form>
                     <?php if (isset($_SESSION['MSG'])) : ?>
                     <div id="success-container">
                         <div id="success-msg">
-                            <h3>Message Successfully Sent</h3>
-                            <p id="p">Redirecting...</p>
+                            <h3>Thank you</h3>
+                            <p id="p">I'll be in touch shortly</p>
                         </div>
                     </div>
                     <script>
@@ -166,7 +172,7 @@
                         document.body.style.overflow = "hidden";
                         setTimeout(function() {
                             window.location.href = "/";
-                        }, 2000);
+                        }, 1500);
                     </script>
                     <?php 
                         unset($_SESSION['MSG']);

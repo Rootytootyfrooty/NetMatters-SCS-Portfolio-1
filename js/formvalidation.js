@@ -2,8 +2,8 @@
 const form = document.getElementById("form");
 const firstNameIn = document.getElementById("ffname");
 const firstNameCo = document.getElementById("first-name");
-const lastNameIn = document.getElementById("flname");
-const lastNameCo = document.getElementById("last-name");
+const numberIn = document.getElementById("flnumber");
+const numberCo = document.getElementById("number");
 const emailIn = document.getElementById("femail");
 const emailCo = document.getElementById("email");
 const subjectIn = document.getElementById("fsubject");
@@ -61,19 +61,19 @@ const emailValue = emailIn.value.trim();
 //trim the data so I don't have to deal with trailing spaces
 const validateInputs = () => {
   const firstNameValue = firstNameIn.value.trim();
-  const lastNameValue = lastNameIn.value.trim();
+  const numberValue = numberIn.value.trim();
   const subjectValue = subjectIn.value.trim();
   const formMessageValue = formMessageIn.value.trim();
 
   if(firstNameValue === "") {
-    setError(firstNameIn, "First name is required");
+    setError(firstNameIn, "Name is required");
   } else {
     setSuccess(firstNameIn);
   }
-  if(lastNameValue === "") {
-    setError(lastNameIn, "Last name is required");
+  if(numberValue === "") {
+    setError(numberIn, "number is required");
   } else {
-    setSuccess(lastNameIn);
+    setSuccess(numberIn);
   }
   if(emailIn.value === "") {
     setError(emailIn, "E-mail is required");
@@ -122,7 +122,7 @@ const textBox = document.getElementsByClassName("char-lim");
 
 for ( let i = 0; i < textBox.length; i++ ) {
   textBox[i].addEventListener("input", () => {
-    if ( textBox[i].value.length < 50 && textBox[i].value.length > 0 ) {
+    if ( textBox[i].value.length < 255 && textBox[i].value.length > 0 ) {
       textBox[i].closest(".input-control").classList.remove("error");
       textBox[i].closest(".input-control").classList.add("success");
     } else {

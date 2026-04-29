@@ -1,5 +1,4 @@
 $sidebar-width: 225px;
-// $sidebar-width: 0px;
 
 //mixin for style reset for default browser styling
 @mixin style-reset {
@@ -26,10 +25,8 @@ $sidebar-width: 225px;
 
 .container-default {
     position: relative;
-    margin: 0 auto;
     padding: 0;
     overflow: visible;
-    max-width: 900px;
 }
 .is-visible {
     animation: slide-in alternate forwards;

@@ -16,8 +16,12 @@
         Examples ✅
         SCS Scheme ✅
 
+    Fix styling/spacing after redesign ✅
+    Update form ✅
+    And form logic
+    
     Contact form logic ✅
-    Set up SMTP or Mailtrap 🟨
+    Set up SMTP or Mailtrap ✅
 
     Upload to cPanel 🟨
     Add database 🟨
@@ -26,4 +30,6 @@
     Upload new .env to cPanel 🟨
     Set up enquiries table 🟨
     Test again 🟨
+
+
 

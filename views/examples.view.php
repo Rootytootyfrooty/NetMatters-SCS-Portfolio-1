@@ -187,6 +187,7 @@
 
     <?php require('partials/footer.view.php') ?>
     <script src="js/prism.js"></script>
+    <script src="js/prism-start.js"></script>
     <script src="js/portfolio.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
