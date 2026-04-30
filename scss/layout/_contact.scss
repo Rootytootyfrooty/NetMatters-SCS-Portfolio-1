@@ -162,7 +162,12 @@
 // .error textarea::placeholder {
 //     color: rgba(139, 0, 0, 0.8);
 // }
-
+.input-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .input-control label {
     font-size: 20px;
     color: $c-burger-bg;
@@ -201,4 +206,8 @@
     align-items: center;
     justify-content: center;
     z-index: 99;
+ }
+ .error-msg {
+    color: red;
+    font-size: 12px;
  }

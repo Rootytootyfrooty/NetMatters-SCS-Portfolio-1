@@ -133,30 +133,45 @@
                             <label for="ffname"><strong>*</strong> Name</label>
                             <input id="ffname" name="first-name" class="default-input <?= isset($errors['firstName']) ? 'error-php ' : '' ?>char-lim" 
                             value="<?= htmlspecialchars($firstName, ENT_QUOTES) ?>"></input>
+                            <?php if (isset($errors['firstName'])) : ?>
+                                <p class="error-msg"><?= $errors['firstName'] ?></p>
+                            <?php endif; ?>
                         </div>
 
                         <div class="input-control" id="number">
                             <label for="flnumber"><strong>*</strong> Number</label>
                             <input id="flnumber" name="number" class="default-input <?= isset($errors['number']) ? 'error-php ' : '' ?>char-lim" 
                             value="<?= htmlspecialchars($number, ENT_QUOTES) ?>"></input>
+                            <?php if (isset($errors['number'])) : ?>
+                                <p class="error-msg"><?= $errors['number'] ?></p>
+                            <?php endif; ?>
                         </div>
 
                         <div class="input-control" id="email">
                             <label for="femail"><strong>*</strong> Email</label>
                             <input id="femail" name="email" class="default-input <?= isset($errors['email']) ? 'error-php ' : '' ?>char-lim" 
                             value="<?= htmlspecialchars($email, ENT_QUOTES) ?>"></input>
+                            <?php if (isset($errors['email'])) : ?>
+                                <p class="error-msg"><?= $errors['email'] ?></p>
+                            <?php endif; ?>
                         </div>
 
                         <div class="input-control" id="subject">
                             <label for="fsubject"><strong>*</strong> Subject</label>
                             <input id="fsubject" name="subject" class="default-input <?= isset($errors['subject']) ? 'error-php ' : '' ?>char-lim" 
                             value="<?= htmlspecialchars($subject, ENT_QUOTES) ?>"></input>
+                            <?php if (isset($errors['subject'])) : ?>
+                                <p class="error-msg"><?= $errors['subject'] ?></p>
+                            <?php endif; ?>
                         </div>
 
                         <div class="input-control" id="message">
                             <label for="fmessage"><strong>*</strong> Message</label>
                             <textarea id="fmessage" name="message" class="default-input <?= isset($errors['message']) ? 'error-php ' : '' ?>" 
                             data-no-clear ><?= htmlspecialchars($message, ENT_QUOTES) ?></textarea>
+                            <?php if (isset($errors['number'])) : ?>
+                                <p class="error-msg"><?= $errors['message'] ?></p>
+                            <?php endif; ?>
                         </div>
                         <button type="submit">Submit</button>
                     </form>
